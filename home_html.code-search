@@ -1,0 +1,24 @@
+# Query: home.html
+
+11 results - 5 files
+
+homee.html:
+   570:             <a href="index.html">← Continue Shopping</a>
+  1340:         <a href="index.html">Home</a>
+  1583:       <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  1909:         <a href="index.html" class="logo">Sooper Store</a>
+  1916:         <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  2010:       window.location.href = "index.html";
+  2723:             <a href="index.html"><i class="fas fa-home"></i> Home</a>
+
+nor.html:
+  410:         window.location.href = 'index.html';
+
+norm1.html:
+  318:         window.location.href = 'index.html';
+
+norm2.html:
+  410:         window.location.href = 'index.html';
+
+norm3.html:
+  356:         window.location.href = 'index.html';

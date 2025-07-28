@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Sooper Store</title>
+
+  <style>
+    :root {
+      --primary: #28a745;
+      --primary-light: #5cb85c;
+      --primary-dark: #218838;
+      --secondary: #98cce0;
+      --dark: #333;
+      --light: #f8f9fa;
+      --danger: #dc3545;
+      --success: #28a745;
+      --warning: #ffc107;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8e9eab, #eef2f3);
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+    }
+    
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .header {
+      background: linear-gradient(90deg, var(--primary), #218838);
+      color: white;
+      padding: 25px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      animation: shine 8s infinite linear;
+    }
+    
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(30deg); }
+      100% { transform: translateX(100%) rotate(30deg); }
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+      position: relative;
+      animation: bounceIn 0.8s;
+    }
+    
+    .header p {
+      opacity: 0.9;
+      font-size: 16px;
+      position: relative;
+      animation: fadeIn 1s 0.3s both;
+    }
+
+    /* Checkout Progress Header */
+    .checkout-progress {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 40px;
+      position: relative;
+    }
+    .progress-bar {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      height: 2px;
+      background-color: #ddd;
+      width: 100%;
+      z-index: 1;
+    }
+    .progress {
+      height: 100%;
+      background-color: var(--primary);
+      width: 100%;
+      transition: width 0.3s ease;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #ddd;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+    .step.completed .step-number {
+      background-color: var(--primary);
+      box-shadow: 0 0 0 5px rgba(40, 167, 69, 0.2);
+    }
+    .step.active .step-number {
+      background-color: var(--primary);
+      box-shadow: 0 0 0 5px rgba(40, 167, 69, 0.4);
+      animation: pulse 1.5s infinite;
+    }
+    .step-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: #999;
+      transition: all 0.3s ease;
+    }
+    .step.completed .step-name {
+      color: var(--primary);
+    }
+    .step.active .step-name {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+    }
+    
+    .payment-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+      gap: 30px;
+    }
+    
+    .payment-summary {
+      flex: 1;
+      min-width: 300px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.5s 0.2s forwards;
+    }
+    
+    .summary-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--dark);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 10px;
+      position: relative;
+    }
+    
+    .summary-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .summary-item:hover {
+      transform: translateX(5px);
+    }
+    
+    .summary-total {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid var(--secondary);
+      display: flex;
+      justify-content: space-between;
+      animation: pulse 2s infinite;
+    }
+    
+    .payment-options {
+      flex: 2;
+      min-width: 300px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.5s 0.4s forwards;
+    }
+    
+    .payment-methods {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .method-btn {
+      flex: 1;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s;
+      font-weight: 500;
+      transform: scale(1);
+    }
+    
+    .method-btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .method-btn.active {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(40, 167, 69, 0.05));
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+    }
+    
+    .method-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      transition: all 0.3s;
+    }
+    
+    .method-btn.active .method-icon {
+      transform: scale(1.2);
+      color: var(--primary);
+    }
+    
+    .payment-details {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    
+    .payment-details:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .payment-form {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease;
+    }
+    
+    .payment-form.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+      transition: all 0.3s;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s;
+      background-color: #f8f9fa;
+    }
+    
+    .form-group input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+      background-color: white;
+    }
+    
+    .form-group input:focus + label {
+      color: var(--primary);
+    }
+    
+    .upi-qr-container {
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 0.5s;
+    }
+    
+    .upi-qr-container h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+      font-size: 18px;
+    }
+    
+    .qr-code {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+      transition: all 0.3s;
+    }
+    
+    .qr-code:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .qr-instructions {
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #2e7d32;
+      text-align: left;
+      transition: all 0.3s;
+    }
+    
+    .qr-instructions:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .qr-instructions ol {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+    
+    .qr-instructions li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .qr-instructions li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+    
+    .qr-instructions p {
+      margin-bottom: 10px;
+    }
+    
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      padding: 0 30px 30px;
+    }
+    
+    .btn {
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), #20c997);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(to right, #218838, #1aa179);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(to right, #6c757d, #5a6268);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: linear-gradient(to right, #5a6268, #495057);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(108, 117, 125, 0.3);
+    }
+    
+    .payment-status {
+      text-align: center;
+      padding: 20px;
+      display: none;
+      animation: fadeIn 0.5s forwards;
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    
+    .payment-status.active {
+      display: block;
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .status-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .status-success {
+      color: var(--success);
+      animation: bounceIn 0.8s;
+    }
+    
+    .status-pending {
+      color: var(--warning);
+      animation: pulse 1.5s infinite;
+    }
+    
+    .status-error {
+      color: var(--danger);
+      animation: shake 0.5s;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #6c757d;
+      font-size: 14px;
+      border-top: 1px solid #eee;
+      background: #f8f9fa;
+    }
+    
+    .address-card {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      position: relative;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .address-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-color: var(--primary);
+    }
+    
+    .address-card h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .address-card h3::before {
+      content: '📍';
+      margin-right: 8px;
+    }
+    
+    .address-details {
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .address-details p {
+      margin-bottom: 5px;
+    }
+    
+    .change-address-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.3s;
+    }
+    
+    .change-address-btn:hover {
+      background: #7fb3d5;
+      transform: translateX(3px);
+    }
+    
+    /* Loading spinner */
+    .loader {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(40, 167, 69, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Confetti effect */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .payment-container {
+        flex-direction: column;
+      }
+      
+      .payment-methods {
+        flex-direction: column;
+      }
+      
+      .actions {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+
+      .checkout-progress {
+        margin: 20px 15px;
+      }
+      
+      .header h1 {
+        font-size: 24px;
+      }
+    }
+    
+    /* Additional animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0.1); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    
+    /* Floating action button */
+    .fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 100;
+      animation: float 3s ease-in-out infinite;
+      transition: all 0.3s;
+    }
+    
+    .fab:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛒 Complete Your Payment</h1>
+      <p>Secure payment processing for your order</p>
+    </div>
+    
+    <!-- Checkout Progress Header -->
+    <div class="checkout-progress">
+      <div class="progress-bar"><div class="progress"></div></div>
+      <div class="step completed">
+        <div class="step-number">1</div>
+        <div class="step-name">Cart</div>
+      </div>
+      <div class="step completed">
+        <div class="step-number">2</div>
+        <div class="step-name">Address</div>
+      </div>
+      <div class="step active">
+        <div class="step-number">3</div>
+        <div class="step-name">Payment</div>
+      </div>
+    </div>
+    
+    <div class="payment-container">
+      <div class="payment-summary">
+        <h2 class="summary-title">Order Summary</h2>
+        <div class="summary-item">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0.00</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span id="total">₹0.00</span>
+        </div>
+        
+        <div style="margin-top: 30px;">
+          <h3 style="margin-bottom: 15px;">Payment Method</h3>
+          <div class="payment-methods">
+            <div class="method-btn active" data-method="upi">
+              <div class="method-icon">📱</div>
+              <div>PhonePe</div>
+            </div>
+            <div class="method-btn" data-method="qr">
+              <div class="method-icon">📷</div>
+              <div>QR Code</div>
+            </div>
+            <div class="method-btn" data-method="card">
+              <div class="method-icon">💳</div>
+              <div>Credit/Debit Card</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="payment-options">
+        <div class="payment-details">
+          <div id="address-section">
+            <h2 style="margin-bottom: 20px;">Delivery Address</h2>
+            <!-- Address will be loaded here -->
+          </div>
+          
+          <div id="upi-payment" class="payment-form active">
+            <h2 style="margin-bottom: 20px;">Pay with PhonePe</h2>
+            <div class="form-group">
+              <label for="upi-id">Your UPI ID</label>
+              <input type="text" id="upi-id" placeholder="e.g., name@ybl" value="9908521287@ybl">
+            </div>
+            <div class="form-group">
+              <label for="amount">Amount</label>
+              <input type="text" id="amount" readonly>
+            </div>
+            <div class="form-group">
+              <label for="transaction-note">Transaction Note</label>
+              <input type="text" id="transaction-note" placeholder="Order Payment" value="Order Payment">
+            </div>
+            <button class="btn btn-primary" onclick="initiatePhonePePayment()">Pay with PhonePe</button>
+          </div>
+          
+          <div id="qr-payment" class="payment-form">
+            <h2 style="margin-bottom: 20px;">Scan QR Code</h2>
+            <div class="upi-qr-container">
+              <h3>Pay ₹<span id="qr-amount">0.00</span> to Sooper Store</h3>
+              <div class="qr-code">
+                <img id="dynamic-qr-code" src="" alt="UPI QR Code">
+              </div>
+              <div class="qr-instructions">
+                <p><strong>Easy Payment Instructions:</strong></p>
+                <ol>
+                  <li>Open any UPI app (PhonePe, Google Pay, Paytm, BHIM, etc.)</li>
+                  <li>Tap on 'Scan QR Code' in your UPI app</li>
+                  <li>Point your camera at this QR code</li>
+                  <li>The amount ₹<span id="instr-amount">0.00</span> will be automatically filled</li>
+                  <li>Just enter your UPI PIN to complete payment</li>
+                </ol>
+                <p style="color: var(--primary); font-weight: bold; margin-top: 15px;">
+                  No need to enter amount manually - it's already set!
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div id="card-payment" class="payment-form">
+            <h2 style="margin-bottom: 20px;">Pay with Card</h2>
+            <div class="form-group">
+              <label for="card-number">Card Number</label>
+              <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="form-group">
+              <label for="card-name">Cardholder Name</label>
+              <input type="text" id="card-name" placeholder="John Doe">
+            </div>
+            <div style="display: flex; gap: 15px;">
+              <div class="form-group" style="flex: 1;">
+                <label for="expiry">Expiry Date</label>
+                <input type="text" id="expiry" placeholder="MM/YY">
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="123">
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="processCardPayment()">Pay with Card</button>
+          </div>
+        </div>
+        
+        <div id="payment-status" class="payment-status">
+          <div class="status-icon status-pending">⏳</div>
+          <h2>Payment Processing</h2>
+          <p>Please wait while we verify your payment...</p>
+          <div id="status-message" style="margin-top: 20px;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <a href="address.html" class="btn btn-secondary">← Back to Address</a>
+      <button id="pay-now-btn" class="btn btn-primary" onclick="simulatePayment()">Pay Now</button>
+    </div>
+    
+    <div class="footer">
+      <p>Secure payment processed by PhonePe. Your payment information is encrypted and safe.</p>
+      <p>For any payment issues, contact support@sooperstore.com</p>
+    </div>
+  </div>
+  
+  <script>
+    // Load cart total from localStorage
+    function loadCartTotal() {
+      return parseFloat(localStorage.getItem('cartTotal')) || 0;
+    }
+    
+    // Update order summary
+    function updateOrderSummary() {
+      const subtotal = loadCartTotal();
+      const total = subtotal;
+      
+      document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+      document.getElementById('amount').value = total.toFixed(2);
+      document.getElementById('qr-amount').textContent = total.toFixed(2);
+      document.getElementById('instr-amount').textContent = total.toFixed(2);
+    }
+    
+    // Load address from localStorage
+    function loadAddress() {
+      const address = JSON.parse(localStorage.getItem('deliveryAddress'));
+      const addressSection = document.getElementById('address-section');
+      
+      if (address) {
+        addressSection.innerHTML = `
+          <div class="address-card">
+            <h3>Delivery Address</h3>
+            <div class="address-details">
+              <p><strong>${address.fullName}</strong></p>
+              <p>${address.phone}</p>
+              <p>${address.address}</p>
+              <p>${address.city}, ${address.state} - ${address.pincode}</p>
+              <p>Type: ${address.type.charAt(0).toUpperCase() + address.type.slice(1)}</p>
+            </div>
+            <button class="change-address-btn" onclick="changeAddress()">Change</button>
+          </div>
+        `;
+      } else {
+        addressSection.innerHTML = `
+          <h2 style="margin-bottom: 20px;">Delivery Address</h2>
+          <p style="color: #666; margin-bottom: 20px;">No address found. Please add your delivery address.</p>
+          <button class="btn btn-primary" onclick="changeAddress()">Add Address</button>
+        `;
+      }
+    }
+    
+    // Change address
+    function changeAddress() {
+      window.location.href = 'address.html';
+    }
+    
+    // Switch payment methods
+    function switchPaymentMethod(method) {
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.classList.remove('active');
+      });
+      
+      document.querySelectorAll('.method-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      document.getElementById(`${method}-payment`).classList.add('active');
+      document.querySelector(`[data-method="${method}"]`).classList.add('active');
+      
+      // Update QR code when switching to QR payment
+      if (method === 'qr') {
+        updateQRCode();
+      }
+    }
+    
+    // Update the QR code with current amount and merchant details
+    function updateQRCode() {
+      const amount = document.getElementById('amount').value || loadCartTotal().toFixed(2);
+      const merchantUpiId = "9908521287@ybl";
+      const merchantName = "Sooper Store";
+      const transactionNote = "Order Payment";
+      
+      // Format UPI URL with all required parameters
+      const upiUrl = `upi://pay?pa=${merchantUpiId}&pn=${encodeURIComponent(merchantName)}&am=${amount}&cu=INR&tn=${encodeURIComponent(transactionNote)}&mode=02`;
+      
+      // Update QR code image
+      document.getElementById('dynamic-qr-code').src = 
+        `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
+      
+      // Update amount displays
+      document.getElementById('qr-amount').textContent = amount;
+      document.getElementById('instr-amount').textContent = amount;
+    }
+    
+    // Simulate payment processing
+    function simulatePayment() {
+      // Hide payment forms and show status
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'none';
+      });
+      
+      const statusDiv = document.getElementById('payment-status');
+      statusDiv.classList.add('active');
+      
+      // Simulate processing time
+      setTimeout(() => {
+        const success = Math.random() > 0.2; // 80% success rate
+        
+        if (success) {
+          statusDiv.querySelector('.status-icon').className = 'status-icon status-success';
+          statusDiv.querySelector('.status-icon').textContent = '✅';
+          statusDiv.querySelector('h2').textContent = 'Payment Successful!';
+          statusDiv.querySelector('p').textContent = 'Your order has been placed successfully.';
+          
+          document.getElementById('status-message').innerHTML = `
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+              <p><strong>Order Details:</strong></p>
+              <p>Order ID: #${Math.floor(100000 + Math.random() * 900000)}</p>
+              <p>Amount: ₹${loadCartTotal().toFixed(2)}</p>
+              <p>Payment Method: UPI</p>
+              <a href="order-confirmation.html" class="btn btn-primary" style="margin-top: 15px; display: inline-block;">View Order Confirmation</a>
+            </div>
+          `;
+          
+          // Clear cart after successful payment
+          localStorage.removeItem('cart');
+          localStorage.removeItem('cartTotal');
+        } else {
+          statusDiv.querySelector('.status-icon').className = 'status-icon status-error';
+          statusDiv.querySelector('.status-icon').textContent = '❌';
+          statusDiv.querySelector('h2').textContent = 'Payment Failed';
+          statusDiv.querySelector('p').textContent = 'We couldn\'t process your payment. Please try again.';
+          
+          document.getElementById('status-message').innerHTML = `
+            <button class="btn btn-primary" onclick="retryPayment()" style="margin-top: 20px;">Retry Payment</button>
+          `;
+        }
+      }, 2000);
+    }
+    
+    // Retry payment
+    function retryPayment() {
+      document.getElementById('payment-status').classList.remove('active');
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'block';
+      });
+      switchPaymentMethod('upi');
+    }
+    
+    // Process card payment
+    function processCardPayment() {
+      const cardNumber = document.getElementById('card-number').value;
+      const cardName = document.getElementById('card-name').value;
+      const expiry = document.getElementById('expiry').value;
+      const cvv = document.getElementById('cvv').value;
+      
+      if (!cardNumber || !cardName || !expiry || !cvv) {
+        alert('Please fill all card details');
+        return;
+      }
+      
+      simulatePayment();
+    }
+    
+    // Initiate PhonePe payment
+    function initiatePhonePePayment() {
+      const upiId = document.getElementById('upi-id').value;
+      const amount = document.getElementById('amount').value;
+      const note = document.getElementById('transaction-note').value;
+      
+      // Create UPI payment URL
+      const upiUrl = `upi://pay?pa=${upiId}&pn=Sooper%20Store&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+      
+      // Try to open PhonePe app
+      window.location.href = upiUrl;
+      
+      // Fallback if PhonePe doesn't open
+      setTimeout(() => {
+        if (!document.hidden) {
+          alert('PhonePe app not found. Please install PhonePe or use the QR code option.');
+          switchPaymentMethod('qr');
+        }
+      }, 1000);
+    }
+    
+    // Initialize the page
+    window.onload = function() {
+      updateOrderSummary();
+      loadAddress();
+      
+      // Add event listeners for payment method buttons
+      document.querySelectorAll('.method-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          switchPaymentMethod(this.dataset.method);
+        });
+      });
+      
+      // Generate initial QR code
+      updateQRCode();
+      
+      // Update QR code when amount changes
+      document.getElementById('amount').addEventListener('input', function() {
+        updateQRCode();
+      });
+    };
+  </script>
+</body>
+</html>

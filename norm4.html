@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Sooper Store</title>
+  <style>
+    :root {
+      --primary: #28a745;
+      --secondary: #98cce0;
+      --dark: #333;
+      --light: #f8f9fa;
+      --danger: #dc3545;
+      --success: #28a745;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8e9eab, #eef2f3);
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .header {
+      background: linear-gradient(90deg, var(--primary), #218838);
+      color: white;
+      padding: 25px 40px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+    
+    .header p {
+      opacity: 0.9;
+      font-size: 16px;
+    }
+    
+    .payment-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+      gap: 30px;
+    }
+    
+    .payment-summary {
+      flex: 1;
+      min-width: 300px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 25px;
+    }
+    
+    .summary-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--dark);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 10px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    
+    .summary-total {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid var(--secondary);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .payment-options {
+      flex: 2;
+      min-width: 300px;
+    }
+    
+    .payment-methods {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .method-btn {
+      flex: 1;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .method-btn.active {
+      border-color: var(--primary);
+      background: #e8f5e9;
+    }
+    
+    .method-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .method-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    
+    .payment-details {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .payment-form {
+      display: none;
+    }
+    
+    .payment-form.active {
+      display: block;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border 0.3s;
+    }
+    
+    .form-group input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+    
+    .upi-qr-container {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .upi-qr-container h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .qr-code {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .qr-instructions {
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #2e7d32;
+    }
+    
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+    
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+    
+    .payment-status {
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+    
+    .payment-status.active {
+      display: block;
+    }
+    
+    .status-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .status-success {
+      color: var(--success);
+    }
+    
+    .status-pending {
+      color: #ffc107;
+    }
+    
+    .status-error {
+      color: var(--danger);
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #6c757d;
+      font-size: 14px;
+      border-top: 1px solid #eee;
+    }
+    
+    .address-card {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      position: relative;
+    }
+    
+    .address-card h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .address-details {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .change-address-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .change-address-btn:hover {
+      background: #7fb3d5;
+    }
+    
+    @media (max-width: 768px) {
+      .payment-container {
+        flex-direction: column;
+      }
+      
+      .payment-methods {
+        flex-direction: column;
+      }
+      
+      .actions {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛒 Complete Your Payment</h1>
+      <p>Secure payment processing for your order</p>
+    </div>
+    
+    <div class="payment-container">
+      <div class="payment-summary">
+        <h2 class="summary-title">Order Summary</h2>
+        <div class="summary-item">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0.00</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span id="total">₹0.00</span>
+        </div>
+        
+        <div style="margin-top: 30px;">
+          <h3 style="margin-bottom: 15px;">Payment Method</h3>
+          <div class="payment-methods">
+            <div class="method-btn active" data-method="upi">
+              <div class="method-icon">📱</div>
+              <div>PhonePe</div>
+            </div>
+            <div class="method-btn" data-method="qr">
+              <div class="method-icon">📷</div>
+              <div>QR Code</div>
+            </div>
+            <div class="method-btn" data-method="card">
+              <div class="method-icon">💳</div>
+              <div>Credit/Debit Card</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="payment-options">
+        <div class="payment-details">
+          <div id="address-section">
+            <h2 style="margin-bottom: 20px;">Delivery Address</h2>
+            <!-- Address will be loaded here -->
+          </div>
+          
+          <div id="upi-payment" class="payment-form active">
+            <h2 style="margin-bottom: 20px;">Pay with PhonePe</h2>
+            <div class="form-group">
+              <label for="upi-id">Your UPI ID</label>
+              <input type="text" id="upi-id" placeholder="e.g., name@ybl" value="9908521287@ybl">
+            </div>
+            <div class="form-group">
+              <label for="amount">Amount</label>
+              <input type="text" id="amount" readonly>
+            </div>
+            <div class="form-group">
+              <label for="transaction-note">Transaction Note</label>
+              <input type="text" id="transaction-note" placeholder="Order Payment" value="Order Payment">
+            </div>
+            <button class="btn btn-primary" onclick="initiatePhonePePayment()">Pay with PhonePe</button>
+          </div>
+          
+          <div id="qr-payment" class="payment-form">
+            <h2 style="margin-bottom: 20px;">Scan QR Code</h2>
+            <div class="upi-qr-container">
+              <h3>Pay ₹<span id="qr-amount">0.00</span> to Sooper Store</h3>
+              <div class="qr-code">
+                <!-- QR code will be generated here -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9908521287@ybl&pn=Sooper%20Store&am=100&cu=INR&tn=Order%20Payment" alt="UPI QR Code">
+              </div>
+              <div class="qr-instructions">
+                <p><strong>Instructions:</strong></p>
+                <p>1. Open your UPI app (PhonePe, Google Pay, Paytm)</p>
+                <p>2. Scan this QR code</p>
+                <p>3. Enter the amount and confirm payment</p>
+              </div>
+            </div>
+          </div>
+          
+          <div id="card-payment" class="payment-form">
+            <h2 style="margin-bottom: 20px;">Pay with Card</h2>
+            <div class="form-group">
+              <label for="card-number">Card Number</label>
+              <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="form-group">
+              <label for="card-name">Cardholder Name</label>
+              <input type="text" id="card-name" placeholder="John Doe">
+            </div>
+            <div style="display: flex; gap: 15px;">
+              <div class="form-group" style="flex: 1;">
+                <label for="expiry">Expiry Date</label>
+                <input type="text" id="expiry" placeholder="MM/YY">
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="123">
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="processCardPayment()">Pay with Card</button>
+          </div>
+        </div>
+        
+        <div id="payment-status" class="payment-status">
+          <div class="status-icon status-pending">⏳</div>
+          <h2>Payment Processing</h2>
+          <p>Please wait while we verify your payment...</p>
+          <div id="status-message" style="margin-top: 20px;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <a href="cart.html" class="btn btn-secondary">← Back to Cart</a>
+      <button id="pay-now-btn" class="btn btn-primary" onclick="simulatePayment()">Pay Now</button>
+    </div>
+    
+    <div class="footer">
+      <p>Secure payment processed by PhonePe. Your payment information is encrypted and safe.</p>
+      <p>For any payment issues, contact support@sooperstore.com</p>
+    </div>
+  </div>
+  
+  <script>
+    // Load cart total from localStorage
+    function loadCartTotal() {
+      return parseFloat(localStorage.getItem('cartTotal')) || 0;
+    }
+    
+    // Update order summary
+    function updateOrderSummary() {
+      const subtotal = loadCartTotal();
+      const total = subtotal;
+      
+      document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+      document.getElementById('amount').value = total.toFixed(2);
+      document.getElementById('qr-amount').textContent = total.toFixed(2);
+    }
+    
+    // Load address from localStorage
+    function loadAddress() {
+      const address = JSON.parse(localStorage.getItem('deliveryAddress'));
+      const addressSection = document.getElementById('address-section');
+      
+      if (address) {
+        addressSection.innerHTML = `
+          <div class="address-card">
+            <h3>Delivery Address</h3>
+            <div class="address-details">
+              <p><strong>${address.fullName}</strong></p>
+              <p>${address.phone}</p>
+              <p>${address.address}</p>
+              <p>${address.city}, ${address.state} - ${address.pincode}</p>
+              <p>Type: ${address.type.charAt(0).toUpperCase() + address.type.slice(1)}</p>
+            </div>
+            <button class="change-address-btn" onclick="changeAddress()">Change</button>
+          </div>
+        `;
+      } else {
+        addressSection.innerHTML = `
+          <h2 style="margin-bottom: 20px;">Delivery Address</h2>
+          <p style="color: #666; margin-bottom: 20px;">No address found. Please add your delivery address.</p>
+          <button class="btn btn-primary" onclick="changeAddress()">Add Address</button>
+        `;
+      }
+    }
+    
+    // Change address
+    function changeAddress() {
+      window.location.href = 'address.html';
+    }
+    
+    // Switch payment methods
+    function switchPaymentMethod(method) {
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.classList.remove('active');
+      });
+      
+      document.querySelectorAll('.method-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      document.getElementById(`${method}-payment`).classList.add('active');
+      document.querySelector(`[data-method="${method}"]`).classList.add('active');
+    }
+    
+    // Simulate payment processing
+    function simulatePayment() {
+      // Hide payment forms and show status
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'none';
+      });
+      
+      const statusDiv = document.getElementById('payment-status');
+      statusDiv.classList.add('active');
+      
+      // Simulate processing time
+      setTimeout(() => {
+        const success = Math.random() > 0.2; // 80% success rate
+        
+        if (success) {
+          statusDiv.querySelector('.status-icon').className = 'status-icon status-success';
+          statusDiv.querySelector('.status-icon').textContent = '✅';
+          statusDiv.querySelector('h2').textContent = 'Payment Successful!';
+          statusDiv.querySelector('p').textContent = 'Your order has been placed successfully.';
+          
+          document.getElementById('status-message').innerHTML = `
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+              <p><strong>Order Details:</strong></p>
+              <p>Order ID: #${Math.floor(100000 + Math.random() * 900000)}</p>
+              <p>Amount: ₹${loadCartTotal().toFixed(2)}</p>
+              <p>Payment Method: UPI</p>
+              <a href="order-confirmation.html" class="btn btn-primary" style="margin-top: 15px; display: inline-block;">View Order Confirmation</a>
+            </div>
+          `;
+          
+          // Clear cart after successful payment
+          localStorage.removeItem('cart');
+          localStorage.removeItem('cartTotal');
+        } else {
+          statusDiv.querySelector('.status-icon').className = 'status-icon status-error';
+          statusDiv.querySelector('.status-icon').textContent = '❌';
+          statusDiv.querySelector('h2').textContent = 'Payment Failed';
+          statusDiv.querySelector('p').textContent = 'We couldn\'t process your payment. Please try again.';
+          
+          document.getElementById('status-message').innerHTML = `
+            <button class="btn btn-primary" onclick="retryPayment()" style="margin-top: 20px;">Retry Payment</button>
+          `;
+        }
+      }, 2000);
+    }
+    
+    // Retry payment
+    function retryPayment() {
+      document.getElementById('payment-status').classList.remove('active');
+      switchPaymentMethod('upi');
+    }
+    
+    // Process card payment
+    function processCardPayment() {
+      const cardNumber = document.getElementById('card-number').value;
+      const cardName = document.getElementById('card-name').value;
+      const expiry = document.getElementById('expiry').value;
+      const cvv = document.getElementById('cvv').value;
+      
+      if (!cardNumber || !cardName || !expiry || !cvv) {
+        alert('Please fill all card details');
+        return;
+      }
+      
+      simulatePayment();
+    }
+    
+    // Initiate PhonePe payment
+    function initiatePhonePePayment() {
+      const upiId = document.getElementById('upi-id').value;
+      const amount = document.getElementById('amount').value;
+      const note = document.getElementById('transaction-note').value;
+      
+      // Create UPI payment URL
+      const upiUrl = `upi://pay?pa=${upiId}&pn=Sooper%20Store&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+      
+      // Try to open PhonePe app
+      window.location.href = upiUrl;
+      
+      // Fallback if PhonePe doesn't open
+      setTimeout(() => {
+        if (!document.hidden) {
+          alert('PhonePe app not found. Please install PhonePe or use the QR code option.');
+          switchPaymentMethod('qr');
+        }
+      }, 1000);
+    }
+    
+    // Initialize the page
+    window.onload = function() {
+      updateOrderSummary();
+      loadAddress();
+      
+      // Add event listeners for payment method buttons
+      document.querySelectorAll('.method-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          switchPaymentMethod(this.dataset.method);
+        });
+      });
+      
+      // Update QR code when amount changes
+      document.getElementById('amount').addEventListener('input', function() {
+        const amount = this.value;
+        const qrImg = document.querySelector('.qr-code img');
+        const upiId = document.getElementById('upi-id').value;
+        const note = document.getElementById('transaction-note').value;
+        
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${upiId}&pn=Sooper%20Store&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+      });
+    };
+  </script>
+</body>
+</html>

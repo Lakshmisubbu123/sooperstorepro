@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Net Banking - Sooper Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .payment-amount {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .bank-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .bank {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .bank:hover {
+      border-color: #007bff;
+      background: #f0f7ff;
+    }
+    .bank img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    .bank span {
+      font-size: 12px;
+      text-align: center;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .back-btn {
+      background-color: #6c757d;
+      color: white;
+    }
+    .pay-btn {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏦 Net Banking</h1>
+    
+    <div class="payment-amount" id="payment-amount">₹0.00</div>
+    
+    <div class="form-group">
+      <label for="bank-select">Select Your Bank</label>
+      <select id="bank-select">
+        <option value="">-- Select Bank --</option>
+        <option value="sbi">State Bank of India</option>
+        <option value="hdfc">HDFC Bank</option>
+        <option value="icici">ICICI Bank</option>
+        <option value="axis">Axis Bank</option>
+        <option value="kotak">Kotak Mahindra Bank</option>
+        <option value="pnb">Punjab National Bank</option>
+      </select>
+    </div>
+    
+    <div class="bank-list">
+      <div class="bank" onclick="selectBank('sbi')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/SBI-logo.svg/1200px-SBI-logo.svg.png" alt="SBI">
+        <span>SBI</span>
+      </div>
+      <div class="bank" onclick="selectBank('hdfc')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/HDFC_Bank_Logo.svg/2560px-HDFC_Bank_Logo.svg.png" alt="HDFC">
+        <span>HDFC</span>
+      </div>
+      <div class="bank" onclick="selectBank('icici')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Icici_bank_logo.svg/1200px-Icici_bank_logo.svg.png" alt="ICICI">
+        <span>ICICI</span>
+      </div>
+      <div class="bank" onclick="selectBank('axis')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Axis_Bank_logo.svg/1200px-Axis_Bank_logo.svg.png" alt="Axis">
+        <span>Axis</span>
+      </div>
+      <div class="bank" onclick="selectBank('kotak')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Kotak_Mahindra_Bank_logo.svg/1200px-Kotak_Mahindra_Bank_logo.svg.png" alt="Kotak">
+        <span>Kotak</span>
+      </div>
+      <div class="bank" onclick="selectBank('pnb')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Punjab_National_Bank_logo.svg/1200px-Punjab_National_Bank_logo.svg.png" alt="PNB">
+        <span>PNB</span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="netbanking-id">Net Banking ID</label>
+      <input type="text" id="netbanking-id" placeholder="Enter your net banking ID">
+    </div>
+    
+    <div class="buttons">
+      <a href="payment.html" class="btn back-btn">← Back</a>
+      <button class="btn pay-btn" onclick="processNetBanking()">Pay Now</button>
+    </div>
+  </div>
+
+  <script>
+    // Display payment amount
+    document.getElementById('payment-amount').textContent = 
+      '₹' + (localStorage.getItem('cartTotal') || '0.00');
+    
+    let selectedBank = '';
+    
+    function selectBank(bank) {
+      selectedBank = bank;
+      document.getElementById('bank-select').value = bank;
+      document.querySelectorAll('.bank').forEach(el => {
+        el.style.borderColor = '#ddd';
+        el.style.backgroundColor = 'white';
+      });
+      event.currentTarget.style.borderColor = '#007bff';
+      event.currentTarget.style.backgroundColor = '#f0f7ff';
+    }
+    
+    document.getElementById('bank-select').addEventListener('change', function() {
+      selectedBank = this.value;
+    });
+    
+    function processNetBanking() {
+      const netbankingId = document.getElementById('netbanking-id').value;
+      
+      if (!selectedBank) {
+        alert('Please select your bank');
+        return;
+      }
+      if (!netbankingId) {
+        alert('Please enter your net banking ID');
+        return;
+      }
+      
+      // Simulate payment processing
+      setTimeout(() => {
+        localStorage.setItem('paymentMethod', 'Net Banking (' + selectedBank.toUpperCase() + ')');
+        localStorage.setItem('paymentStatus', 'success');
+        window.location.href = 'payment-success.html';
+      }, 2000);
+      
+      // Show loading state
+      const btn = document.querySelector('.pay-btn');
+      btn.disabled = true;
+      btn.textContent = 'Redirecting to Bank...';
+    }
+  </script>
+</body>
+</html>

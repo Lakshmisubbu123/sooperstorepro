@@ -1,0 +1,3388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('home.png') no-repeat center center/cover;
+      height: 100vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 40px;
+      text-shadow: 2px 2px 5px black;
+      text-align: center;
+    }
+
+    a {
+      position: absolute;
+      padding: 10px 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: rgba(92, 135, 170, 0.8);
+    }
+
+    .top-right {
+      top: 20px;
+      right: 30px;
+    }
+
+    .bottom-right {
+      bottom: 20px;
+      right: 30px;
+    }
+  </style>
+</head>
+<body>
+  <a href="login.html" class="top-right">Login</a>
+  <h1>Welcome to Super Store</h1>
+  <a href="index.html" class="bottom-right">Back</a>
+</body>
+</html>
+
+<div class="container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Enter Name" required>
+            </div><br><br>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Enter Email" required>
+            </div><br><br>
+            <div>
+                <label for="message">Message:</label>
+                <textarea name="message" rows="4" required></textarea>
+            </div><br><br>
+            <button type="submit">Send Messagee </button>
+        </form>
+ 
+        <h1>Super Store Inventory</h1>
+    <table>
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price </th>
+        <th>Quantity</th>
+        <th>Total </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>Apple</td>
+        <td>Fruits</td>
+        <td>1.20</td>
+        <td>50</td>
+        <td>60.00</td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td>Milk</td>
+        <td>Dairy</td>
+        <td>2.50</td>
+        <td>30</td>
+        <td>75.00</td>
+      </tr>
+      <tr>
+        <td>103</td>
+        <td>Bread</td>
+        <td>Bakery</td>
+        <td>1.50</td>
+        <td>40</td>
+        <td>60.00</td>
+      </tr>
+      <tr>
+        <td>104</td>
+        <td>Orange Juice</td>
+        <td>Beverages</td>
+        <td>1.50</td>
+        <td>40</td>
+        <td>60.00</td>
+      </tr>
+      <tr>
+        <td>105</td>
+        <td>Potato</td>
+        <td>Vegetable</td>
+        <td>1.50</td>
+        <td>40</td>
+        <td>60.00</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  Styles
+  -------------
+  .container {
+    padding: 20px;
+    margin-bottom: 60px; 
+    /*background-image: url('superstore3.png'); 
+    background-size: cover;
+    margin:20px auto; 
+    background: #cbd3d8; 
+    background: linear-gradient(to right, #8e9eab, #eef2f3); */
+    background: linear-gradient(to right, #f4f7fa, #dceef3);
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+h2:hover{
+  font-size: 30px;
+  text-overflow: clip;
+  transition: all 0.3s ease;    /* Smooth transition */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+button{
+    background-color: rgb(50, 50, 105);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: rgb(51, 12, 73);
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease; 
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+table th, table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table th {
+  background-color: rgb(50, 50, 105);
+  color: white;
+  text-transform: uppercase;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tbody tr:hover {
+  background-color: #cedfec;
+}
+
+<div class="back">
+        <a href="index.html">Back</a>
+    </div>
+
+        .back a {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-radius: 10px;
+    }
+     .back a:hover {
+      background-color: rgba(92, 135, 170, 0.8);
+      
+    }
+
+
+    product<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      background: linear-gradient(to right, #8e9eab, #eef2f3); 
+      /*background-image: url('Products images/products.jpg');
+      background-size: cover;
+      background-position: center;*/
+    }
+
+    /* Navbar */
+    .navbar {
+      /*background-color: #232f3e; */
+      background-image: url('Products images/product nav.png');
+      background-size: cover;
+      background-position: center;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    }
+
+    .logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background-color: #7cc3df;
+    transition: width 0.3s ease;
+    }
+
+.logo:hover {
+  transform: translateX(5px); /* slight move to the right */
+}
+
+.logo:hover::after {
+  width: 100%;
+}
+    .nav-links a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #febd69;
+    }
+
+    .nav-search {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .search-input {
+      padding: 8px 10px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      width: 250px;
+    }
+
+    .search-button {
+      padding: 8px 12px;
+      background-color: #7cc3df;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+
+    .search-button i {
+      color: black;
+    }
+
+    /* Products Section */
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 100px;
+      padding: 300px;
+    }
+
+    .product-card {
+      background-color: rgb(255, 255, 255);
+      padding: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <div class="logo">Sooper Store</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-search">
+        <input type="text" class="search-input" placeholder="Search products">
+        <button class="search-button"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Products -->
+  <section class="products-container">
+    <div class="product-card" style="background-image: url('Products images/software.jpg'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/home.webp'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/kitchen.jpg'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/electrical.webp'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/vegetables.webp'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/bekary.jpg'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/dairy.jpeg'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+
+    <div class="product-card" style="background-image: url('Products images/fruits 2.webp'); background-size: cover;
+      background-position: center;">
+      <div class="product-name">Smartphone</div>
+    </div>
+    
+  </section>
+
+</body>
+</html>
+i want gap of the images
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .cart-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .cart-items {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cart-items th {
+            text-align: left;
+            padding: 15px 10px;
+            border-bottom: 2px solid #eee;
+            color: #757575;
+        }
+        .cart-items td {
+            padding: 20px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+        }
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            background: #f0f0f0;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .qty-input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .remove-btn {
+            color: #ff7043;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .cart-summary {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: right;
+        }
+        .checkout-btn {
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .checkout-btn:hover {
+            background-color: #f4511e;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+            color: #757575;
+        }
+        .empty-cart h2 {
+            margin-bottom: 15px;
+        }
+        .browse-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #ff7043;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="home.html">← Continue Shopping</a>
+            <span>Your Cart</span>
+        </div>
+        
+        <h1 class="cart-title">Your Shopping Cart</h1>
+        
+        <div id="cart-content">
+            <!-- Cart items will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Load cart when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContent = document.getElementById('cart-content');
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <h2>Your cart is empty</h2>
+                        <p>You haven't added any items to your cart yet.</p>
+                        <a href="index.html" class="browse-btn">Browse Products</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let itemsHtml = `
+                <table class="cart-items">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                itemsHtml += `
+                    <tr data-id="${item.id}">
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <img src="Products images/${item.image}" alt="${item.name}" class="cart-item-img">
+                                <div>${item.name}</div>
+                            </div>
+                        </td>
+                        <td>₹${item.price}</td>
+                        <td>
+                            <div class="qty-controls">
+                                <button class="qty-btn minus">-</button>
+                                <input type="number" class="qty-input" value="${item.quantity}" min="1">
+                                <button class="qty-btn plus">+</button>
+                            </div>
+                        </td>
+                        <td>₹${itemTotal}</td>
+                        <td><button class="remove-btn">×</button></td>
+                    </tr>
+                `;
+            });
+            
+            itemsHtml += `
+                    </tbody>
+                </table>
+                
+                <div class="cart-summary">
+                    <h3>Subtotal (${cart.reduce((total, item) => total + item.quantity, 0)} items): ₹${subtotal}</h3>
+                    <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+                </div>
+            `;
+            
+            cartContent.innerHTML = itemsHtml;
+            
+            // Add event listeners for quantity controls
+            document.querySelectorAll('.qty-btn.minus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = this.closest('tr').dataset.id;
+                    const input = this.nextElementSibling;
+                    if (input.value > 1) {
+                        input.value--;
+                        updateCartItem(itemId, parseInt(input.value));
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.qty-btn.plus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = this.closest('tr').dataset.id;
+                    const input = this.previousElementSibling;
+                    input.value++;
+                    updateCartItem(itemId, parseInt(input.value));
+                });
+            });
+            
+            document.querySelectorAll('.qty-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const itemId = this.closest('tr').dataset.id;
+                    updateCartItem(itemId, parseInt(this.value));
+                });
+            });
+            
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = this.closest('tr').dataset.id;
+                    removeFromCart(itemId);
+                });
+            });
+        });
+        
+        function updateCartItem(productId, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity = newQuantity;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                location.reload(); // Refresh to update totals
+            }
+        }
+        
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload(); // Refresh to update the cart
+        }
+    </script>
+</body>
+</htm
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mango</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .product-image {
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-title {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .product-price {
+            font-size: 24px;
+            color: #2e7d32;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #757575;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+        .discount {
+            color: #2e7d32;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .qty-btn {
+            width: 35px;
+            height: 35px;
+            background: #f0f0f0;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .qty-input {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .add-to-cart {
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .product-description {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .delivery-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .cart-icon {
+            position: relative;
+        }
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff7043;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="../indexz.html">← Back to Products</a>
+            <a href="../cart.html" class="cart-icon">🛒 <span class="cart-count">0</span></a>
+        </div>
+        
+        <div class="product-header">
+            <div class="product-image" style="background-image: url('../Products images/f2.jpg');"></div>
+            <div class="product-info">
+                <h1 class="product-title">Fresh Oranges</h1>
+                <div class="product-price">
+                    ₹89 <span class="original-price">₹120</span>
+                    <span class="discount">26% off</span>
+                </div>
+                
+                <form action="../cart.html" method="GET">
+                    <div class="quantity-controls">
+                        <button type="button" class="qty-btn" onclick="this.nextElementSibling.stepDown()">-</button>
+                        <input type="number" name="quantity" class="qty-input" value="1" min="1" max="10">
+                        <button type="button" class="qty-btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                        <span style="margin-left:15px;font-size:14px;color:#757575;">(Available: 10)</span>
+                    </div>
+                    
+                    <input type="hidden" name="product" value="Orange">
+                    <input type="hidden" name="price" value="89">
+                    <input type="hidden" name="image" value="f2.jpg">
+                    
+                    <button type="submit" class="add-to-cart">ADD TO CART</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="product-description">
+            <h3>Product Details</h3>
+            <p>Fresh and juicy oranges sourced directly from farms. Rich in Vitamin C and antioxidants. Each orange weighs approximately 120-150g.</p>
+            
+            <div class="delivery-info">
+                <h4>Delivery Information</h4>
+                <p>• Same day delivery available within 2 hours</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .qty-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      border: none;
+      background: #eee;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .remove-btn {
+      background: #ff5252;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .total-row {
+      font-weight: bold;
+      font-size: 20px;
+      text-align: right;
+      padding-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Your Cart</h1>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <!-- Items will be injected here -->
+      </tbody>
+    </table>
+    <div class="total-row" id="grand-total">Grand Total: ₹0</div>
+  </div>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartBody = document.getElementById("cart-body");
+      let grandTotal = 0;
+      cartBody.innerHTML = "";
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        grandTotal += itemTotal;
+
+        const row = `
+          <tr>
+            <td>${item.name}</td>
+            <td><img src="${item.image}" alt="${item.name}"></td>
+            <td>₹${item.price}</td>
+            <td>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                ${item.quantity}
+                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </td>
+            <td>₹${itemTotal}</td>
+            <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+          </tr>
+        `;
+        cartBody.innerHTML += row;
+      });
+
+      document.getElementById("grand-total").textContent = "Grand Total: ₹" + grandTotal;
+    }
+
+    function changeQty(index, delta) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].quantity += delta;
+      if (cart[index].quantity < 1) cart[index].quantity = 1;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    window.onload = renderCart;
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orange - Product Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f9f9f9;
+    }
+
+    .product-card {
+      max-width: 400px;
+      background: #fff;
+      padding: 20px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .product-name {
+      font-size: 24px;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    .product-price {
+      font-size: 18px;
+      color: green;
+    }
+
+    .add-to-cart {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: orange;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card">
+    <img src="Products images/f1.jpg" alt="Orange" class="product-image">
+    <div class="product-name">Orange</div>
+    <div class="product-price">₹40 / 500g</div>
+    <a href="cart.html" class="add-to-cart">Add to Cart</a>
+  </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 30px;
+    }
+
+    .cart-container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .cart-item img {
+      width: 80px;
+      border-radius: 6px;
+    }
+
+    .cart-info {
+      flex: 1;
+      padding-left: 15px;
+    }
+
+    .cart-info h4 {
+      margin: 0 0 5px;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin-top: 20px;
+      background: orange;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-container">
+    <h2>Your Cart</h2>
+
+    <div class="cart-item">
+      <img src="Products images/f1.jpg" alt="Orange">
+      <img src="Products images/f2.jpg" alt="Mango">
+      <div class="cart-info">
+        <h4>Orange</h4>
+        <div class="price">₹40 / 500g</div>
+        <div>Quantity: 1</div>
+      </div>
+    </div>
+
+    <a href="#" class="checkout-btn">Proceed to Checkout</a>
+  </div>
+
+</body>
+</html>
+
+<!--Kids Wear-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOme Decor</title>
+    <style>
+    body{
+  background: linear-gradient(to right, #8e9eab, #eef2f3); 
+}
+
+h1:hover {
+  background-color: none; /* Darker background on hover */
+  color: none;         /* Change text color */
+  letter-spacing: 1px;    /* Slight letter spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+nav{
+    background-image: url('Products images/product nav.png');
+    background-size: cover;
+    background-position: center;
+    /*overflow: hidden; */
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+nav a{
+    float: left;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+nav a:hover {
+    background-color: #ddd;
+    text-overflow: clip;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.3s ease;    /* Smooth transition */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transform: scale(1.1); 
+}
+.logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      position: relative;
+      transition: all 0.3s ease;
+      text-align: left;
+      
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background-color: #7cc3df;
+      transition: width 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: translateX(5px);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+
+        /* Products Section */
+.products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      padding: 40px;
+      max-width: 1600px;
+      margin: auto;
+    }
+    
+
+.product-card {
+  height: 280px; /* Reduced card height */
+  width: 100%; /* Takes full width of grid cell */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+    }
+
+    .product-name {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgb(199, 216, 219);
+      color: black;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .product-name {
+      text-align: center;
+      padding: 10px;
+      background: rgb(199, 216, 219);
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    @media (max-width: 900px) {
+      .products-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-container {
+        grid-template-columns: 1fr; /* 1 per row on mobile */
+      }
+      
+
+      .search-input {
+        width: 150px;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+        margin: 5px;
+      }
+    }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+<!-- Products Grid -->
+
+  <section class="products-container">
+    <a href="k1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k1.webp');">
+    <div class="product-name">Sets</div>
+  </div>
+</a>
+<a href="k2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k2.webp');">
+    <div class="product-name">Trackpants & Tracksuits</div>
+  </div>
+</a>
+<a href="k3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k3.webp');">
+    <div class="product-name">Shirts</div>
+  </div>
+</a>
+<a href="k4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k4.webp');">
+    <div class="product-name">Jeans</div>
+  </div>
+</a>
+<a href="k5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k5.webp');">
+    <div class="product-name">Dungarees</div>
+  </div>
+</a>
+<a href="k6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k6.webp');">
+    <div class="product-name">Rainwear & Windcheater</div>
+  </div>
+</a>
+<a href="k7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k7.webp');">
+    <div class="product-name">Dresses & Frocks</div>
+  </div>
+</a>
+<a href="k8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k8.webp');">
+    <div class="product-name">Sets</div>
+  </div>
+</a>
+<a href="k9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k9.webp');">
+    <div class="product-name">Ethnic Wear Seta</div>
+  </div>
+</a>
+<a href="k10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k10.webp');">
+    <div class="product-name">Nightsuit Sets</div>
+  </div>
+</a>
+<a href="k11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k11.webp');">
+    <div class="product-name">Dungarees & Playsuits</div>
+  </div>
+</a>
+<a href="k12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/k12.webp');">
+    <div class="product-name">Skirts & Shorts</div>
+  </div>
+</a>
+</section>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Sooper Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      background-image: url('home.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%; width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    header {
+      z-index: 2;
+      position: relative;
+    }
+
+    .navbar {
+      background-image: url('Products images/product nav.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-links a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #febd69;
+    }
+
+    .body-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 100px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .register-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2d3e50;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #4466aa;
+      outline: none;
+    }
+
+    .register-btn {
+      background-color: #2d3e50;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .register-btn:hover {
+      background-color: #1a2533;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #2d3e50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 18px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+      }
+      .nav-links a {
+        font-size: 16px;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo"><i class="fas fa-store"></i> Sooper Store</div>
+    <div class="nav-links">
+      <a href="home.html"><i class="fas fa-home"></i> Home</a>
+      <a href="login.html"><i class="fas fa-user"></i> Login</a>
+      <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    </div>
+  </div>
+</header>
+
+<div class="body-container">
+  <div class="register-container">
+    <h2>Create Your Account</h2>
+    <form onsubmit="return validateRegister()">
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required pattern="[6-9]{1}[0-9]{9}" placeholder="Enter 10-digit phone number">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+
+    <div class="footer">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function validateRegister() {
+    const pass = document.getElementById("password").value;
+    const confirm = document.getElementById("confirm-password").value;
+    const phone = document.getElementById("phone").value;
+
+    if (pass !== confirm) {
+      alert("Passwords do not match!");
+      return false;
+    }
+
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      alert("Please enter a valid 10-digit Indian phone number.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Sooper Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      background: url('home.png') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+   * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      background-image: linear-gradient(to right, #2c3e50, #4ca1af);
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .user-location {
+      font-size: 14px;
+      color: #69fe9b;
+      display: flex;
+      align-items: center;
+    }
+    .user-location:hover{
+      color: #fbfe69;
+    }
+
+    .user-location i {
+      margin-right: 5px;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background-color: #7cc3df;
+      transition: width 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: translateX(5px);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #febd69;
+    }
+
+    .navbar {
+      background-image: url('Products images/product nav.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 20px;
+      display: flex;
+      font-weight: bold;
+      color: white;
+      max-width: 300px;
+    }
+
+    .nav-links a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #febd69;
+    }
+
+    .body-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 100px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2d3e50;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #4466aa;
+      outline: none;
+    }
+
+    .login-btn {
+      background-color: #2d3e50;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #1a2533;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #2d3e50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 16px;
+        max-width: 100%;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+      }
+      .nav-links a {
+        font-size: 16px;
+        margin: 5px;
+      }
+    }
+    .save-address {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .save-address input {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .save-address label {
+      margin-bottom: 0;
+      font-weight: normal;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo-container">
+        <a href="home.html" class="logo">Sooper Store</a>
+        <div class="user-location" id="user-location-display">
+          <i class="fas fa-map-marker-alt"></i>
+          <span id="location-display">Sign in to see your location</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="login.html"><i class="fas fa-user"></i> Login</a>
+        <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#"><i class="fas fa-search"></i> Search</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="body-container">
+    <div class="login-container">
+      <h2>Login to Sooper Store</h2>
+      <form onsubmit="saveLoginDetails(event)">
+        <div class="form-group">
+          <label for="username">Username or Email</label>
+          <input type="text" id="username" required placeholder="Enter your username or email">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="Enter your password">
+        </div>
+
+        <div class="form-group">
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" placeholder="Enter your pincode" onblur="fetchLocationByPincode()">
+        </div>
+
+        <div class="form-group">
+          <label for="location">Current Location</label>
+          <input type="text" id="location" readonly placeholder="Location will appear here">
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+
+      <div class="footer">
+        Don't have an account? <a href="register.html">Register</a>
+      </div>
+    </div>
+  </div>
+
+ <script>
+    async function fetchLocationByPincode() {
+      const pincode = document.getElementById("pincode").value.trim();
+
+      if (pincode.length < 4) {
+        document.getElementById("location").value = "Invalid PIN code";
+        return;
+      }
+
+      try {
+        // Show loading
+        document.getElementById("location").value = "Loading...";
+        
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${pincode}&country=India&format=json`);
+        const data = await response.json();
+
+        if (data.length > 0) {
+          // Extract just the city/town name and state
+          const address = data[0].display_name.split(',');
+          let shortAddress = '';
+          if (address.length >= 3) {
+            shortAddress = `${address[0]}, ${address[address.length-3]}`;
+          } else {
+            shortAddress = data[0].display_name;
+          }
+          document.getElementById("location").value = shortAddress;
+        } else {
+          document.getElementById("location").value = "No location found";
+        }
+      } catch (error) {
+        document.getElementById("location").value = "Error fetching location";
+      }
+    }
+
+    function saveLoginDetails(e) {
+      e.preventDefault();
+      const name = document.getElementById("username").value;
+      const location = document.getElementById("location").value;
+      const pincode = document.getElementById("pincode").value;
+      const saveAddress = document.getElementById("save-address").checked;
+
+      if (saveAddress) {
+        localStorage.setItem("loginName", name);
+        localStorage.setItem("loginLocation", location);
+        localStorage.setItem("loginPincode", pincode);
+      }
+
+      // Update the display immediately
+      updateLocationDisplay(name, location);
+      
+      // redirect to home
+      window.location.href = "home.html";
+    }
+
+    function updateLocationDisplay(name, location) {
+      const locationDisplay = document.getElementById("location-display");
+      if (name && location) {
+        locationDisplay.innerHTML = `<strong>${name}</strong> | ${location}`;
+      } else if (location) {
+        locationDisplay.textContent = location;
+      } else {
+        locationDisplay.textContent = "Sign in to see your location";
+      }
+    }
+
+    // Check for saved login info on page load
+    window.onload = function () {
+      const name = localStorage.getItem("loginName");
+      const location = localStorage.getItem("loginLocation");
+      updateLocationDisplay(name, location);
+      
+      // If logged in, pre-fill the username field
+      if (name) {
+        document.getElementById("username").value = name;
+      }
+    }
+  </script>
+
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sooper Store - Your One-Stop Shopping Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary-color: #323269;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ff6b6b;
+            --light-color: #f8f9fa;
+            --dark-color: #2d3e50;
+            --gradient-bg: linear-gradient(135deg, #8e9eab 0%, #eef2f3 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        /* Header with animation */
+        header {
+            background-color: var(--primary-color);
+            background-image: url('superstore img.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            padding: 60px 20px;
+            margin: 10px;
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(50,50,105,0.8) 0%, rgba(78,205,196,0.4) 100%);
+        }
+        
+        h1 {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+        
+        h1:hover {
+            letter-spacing: 2px;
+            animation: none;
+            transform: scale(1.05);
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+        }
+        
+        .cart-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+            animation: none;
+        }
+        
+        /* Navigation with animation */
+        nav {
+            background-image: url('Products images/product nav.png');
+            background-size: cover;
+            background-position: center;
+            margin: 15px 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+        
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(50,50,105,0.7);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        nav a {
+            color: white;
+            font-size: 1.1rem;
+            padding: 15px 20px;
+            margin: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        nav a:hover i {
+            transform: rotate(10deg);
+        }
+        
+        nav a:hover::before {
+            left: 100%;
+        }
+        
+        /* Search Bar with animation */
+        .search-container {
+            position: relative;
+            margin: 10px;
+            z-index: 1;
+            width: 300px;
+            animation: slideInRight 0.8s ease-out 0.3s both;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            padding-right: 45px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            background: white;
+            transform: scale(1.02);
+        }
+        
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background: var(--accent-color);
+            transform: scale(1.1);
+        }
+        
+        /* Category Slider with animation */
+        .category-section {
+            margin: 30px 10px;
+            position: relative;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 15px;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 15px;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 2px;
+            animation: expandWidth 1s ease-out 0.5s both;
+        }
+        
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+        
+        .image-slider {
+            overflow: hidden;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .slider-container {
+            padding: 10px 0;
+        }
+        
+        .slider-track {
+            display: flex;
+            width: calc(200px * 14);
+            animation: scroll 30s linear infinite;
+        }
+        
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+        
+        .slider-track a {
+            text-decoration: none;
+            margin: 0 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-track a:hover {
+            transform: translateY(-5px);
+        }
+        
+        .slider-track img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .slider-track img:hover {
+            transform: scale(1.1);
+            border-color: var(--secondary-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: pulse 0.5s ease;
+        }
+        
+        .category-name {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-track a:hover .category-name {
+            color: var(--accent-color);
+            font-weight: 700;
+            transform: translateY(3px);
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Products Section with animations */
+        .products-section {
+            margin: 40px 10px;
+            animation: fadeIn 0.8s ease-out both;
+        }
+        
+        .products-section:nth-child(1) { animation-delay: 0.5s; }
+        .products-section:nth-child(2) { animation-delay: 0.6s; }
+        .products-section:nth-child(3) { animation-delay: 0.7s; }
+        .products-section:nth-child(4) { animation-delay: 0.8s; }
+        .products-section:nth-child(5) { animation-delay: 0.9s; }
+        .products-section:nth-child(6) { animation-delay: 1.0s; }
+        .products-section:nth-child(7) { animation-delay: 1.1s; }
+        .products-section:nth-child(8) { animation-delay: 1.2s; }
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 15px;
+        }
+        
+        .product-card {
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+        
+        /* Staggered animations for product cards */
+        .products-container .product-card:nth-child(1) { animation-delay: 0.3s; }
+        .products-container .product-card:nth-child(2) { animation-delay: 0.4s; }
+        .products-container .product-card:nth-child(3) { animation-delay: 0.5s; }
+        .products-container .product-card:nth-child(4) { animation-delay: 0.6s; }
+        .products-container .product-card:nth-child(5) { animation-delay: 0.7s; }
+        .products-container .product-card:nth-child(6) { animation-delay: 0.8s; }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        .product-name {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.9);
+            color: var(--dark-color);
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover .product-name {
+            background: rgba(50,50,105,0.9);
+            color: white;
+            padding: 20px 0;
+        }
+        
+        .product-price {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.95);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .product-card:hover .product-price {
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        .add-to-cart {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+        
+        .product-card:hover .add-to-cart {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .add-to-cart:hover {
+            background: #ff5252;
+            transform: scale(1.1) translateY(0);
+        }
+        
+        /* Footer with animation */
+        footer {
+            background-color: var(--primary-color);
+            padding: 20px;
+            margin: 10px;
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* Scroll reveal animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            header {
+                padding: 40px 20px;
+                font-size: 2rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .search-container {
+                width: 100%;
+                margin: 15px 0 0;
+            }
+            
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.8rem;
+                padding: 30px 15px;
+            }
+            
+            nav a {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+            
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-card {
+                height: 240px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            header {
+                font-size: 1.5rem;
+                padding: 25px 10px;
+            }
+            
+            .cart-icon {
+                font-size: 1.5rem;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+                margin: 3px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            
+            .product-card {
+                height: 200px;
+            }
+            
+            .product-name {
+                font-size: 0.9rem;
+                padding: 10px 0;
+            }
+            
+            .product-price {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+            
+            .add-to-cart {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            footer {
+                font-size: 0.9rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Sooper Store</h1>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count"></span>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-links">
+            <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            <a href="login.html"><i class="fas fa-user"></i> Login</a>
+            <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+        </div>
+    </nav>
+    
+    <!-- Category Slider -->
+    <div class="category-section">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="image-slider">
+            <div class="slider-container">
+                <div class="slider-track">
+                    <a href="fruits.html">
+                        <img src="Products images/fh.webp" alt="Fruits">
+                        <div class="category-name">Fruits</div>
+                    </a>
+                    <a href="Home Decor Item's.html">
+                        <img src="Products images/home.webp" alt="Home Decor">
+                        <div class="category-name">Home Decor</div>
+                    </a>
+                    <a href="Kitchenware.html">
+                        <img src="Products images/kitchen.jpg" alt="Kitchenware">
+                        <div class="category-name">Kitchenware</div>
+                    </a>
+                    <a href="Electrical's.html">
+                        <img src="Products images/electrical.webp" alt="Electrical">
+                        <div class="category-name">Electrical</div>
+                    </a>
+                    <a href="Vegetables.html">
+                        <img src="Products images/vegetables.webp" alt="Vegetables">
+                        <div class="category-name">Vegetables</div>
+                    </a>
+                    <a href="Bakery.html">
+                        <img src="Products images/bekary.jpg" alt="Bakery">
+                        <div class="category-name">Bakery</div>
+                    </a>
+                    <a href="Dairy.html">
+                        <img src="Products images/dairy.jpeg" alt="Dairy">
+                        <div class="category-name">Dairy</div>
+                    </a>
+                    <a href="Bags.html">
+                        <img src="Products images/bagh.png" alt="Bags">
+                        <div class="category-name">Bags</div>
+                    </a>
+                    <a href="Toy's.html">
+                        <img src="Products images/toysh.png" alt="Toys">
+                        <div class="category-name">Toys</div>
+                    </a>
+                    <a href="kid's.html">
+                        <img src="Products images/kidsh.png" alt="Kids Wear">
+                        <div class="category-name">Kids Wear</div>
+                    </a>
+                    <a href="Men's.html">
+                        <img src="Products images/men wear.webp" alt="Men's Wear">
+                        <div class="category-name">Men's Wear</div>
+                    </a>
+                    <a href="Women.html">
+                        <img src="Products images/Women Dresses.webp" alt="Women Dresses">
+                        <div class="category-name">Women Dresses</div>
+                    </a>
+                    <a href="Jewellery & Accessories.html">
+                        <img src="Products images/jewellery & Accessories.png" alt="Jewellery">
+                        <div class="category-name">Jewellery</div>
+                    </a>
+                    <a href="Footwear.html">
+                        <img src="Products images/footwearh.webp" alt="Footwear">
+                        <div class="category-name">Footwear</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Featured Products Sections -->
+    <div class="products-section">
+        <h2>Fruits</h2>
+<section class="products-container">
+    <a href="f1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f1.jpg');">
+    <div class="product-name">Orange</div>
+  </div>
+</a>
+<a href="f2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f2.jpg');">
+    <div class="product-name">Mango</div>
+  </div>
+</a>
+<a href="f3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f3.jpg');">
+    <div class="product-name">Banana</div>
+  </div>
+</a>
+<a href="f4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f4.jpg');">
+    <div class="product-name">Apple</div>
+  </div>
+</a>
+<a href="f5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f5.jpg');">
+    <div class="product-name">Watermelon</div>
+  </div>
+</a>
+<a href="f6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f6.jpg');">
+    <div class="product-name">Dragon fruit</div>
+  </div>
+</a>
+<a href="f7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f7.jpg');">
+    <div class="product-name">Pineapple</div>
+  </div>
+</a>
+<a href="f8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f8.jpg');">
+    <div class="product-name">Strawberry</div>
+  </div>
+</a>
+<a href="f9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f9.jpg');">
+    <div class="product-name">Guavas</div>
+  </div>
+</a>
+<a href="f10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f10.jpg');">
+    <div class="product-name">Kiwis</div>
+  </div>
+</a>
+<a href="f11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f11.jpg');">
+    <div class="product-name">Cherries</div>
+  </div>
+</a>
+<a href="f12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f12.jpg');">
+    <div class="product-name">Pomegranates</div>
+  </div>
+</a>
+</section>
+
+  <h2>Electrical Products</h2>
+
+<section class="products-container">
+    <a href="e1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e1.webp');">
+    <div class="product-name">Fans & Air Coolers</div>
+  </div>
+</a>
+<a href="e2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e2.webp');">
+    <div class="product-name">Water Purifiers</div>
+  </div>
+</a>
+<a href="e3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e3.webp');">
+    <div class="product-name">Irons & Steamers</div>
+  </div>
+</a>
+<a href="e4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e4.webp');">
+    <div class="product-name">Geysers & Heaters</div>
+  </div>
+</a>
+<a href="e5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e5.webp');">
+    <div class="product-name">Vacuum Cleaners</div>
+  </div>
+</a>
+<a href="e6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e6.webp');">
+    <div class="product-name">Air Purifiers</div>
+  </div>
+</a>
+<a href="e7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e7.webp');">
+    <div class="product-name">Invertors & Stabilizers</div>
+  </div>
+</a>
+<a href="e8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e8.webp');">
+    <div class="product-name">Sewing Machines</div>
+  </div>
+</a>
+<a href="e9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e9.webp');">
+    <div class="product-name">Breakfast Appliances</div>
+  </div>
+</a>
+<a href="e10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e10.webp');">
+    <div class="product-name">Cooking Appliances</div>
+  </div>
+</a>
+<a href="e11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e11.webp');">
+    <div class="product-name">Juicers & Mixer Grinders</div>
+  </div>
+</a>
+<a href="e12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e12.webp');">
+    <div class="product-name">Chimneys & Hobs</div>
+  </div>
+</a>
+</section>
+
+<h2>Cooking Essentials</h2>
+<section class="products-container">
+    <a href="c1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c1.webp');">
+    <div class="product-name">Atta Flours</div>
+  </div>
+</a>
+<a href="c2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c2.webp');">
+    <div class="product-name">Besan</div>
+  </div>
+</a>
+<a href="c3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c3.webp');">
+    <div class="product-name"> Barley Daliya</div>
+  </div>
+</a>
+<a href="c4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c4.webp');">
+    <div class="product-name">Quinoa Flour</div>
+  </div>
+</a>
+<a href="c5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c5.webp');">
+    <div class="product-name">Oats Meal Daliya</div>
+  </div>
+</a>
+<a href="c6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c6.webp');">
+    <div class="product-name">Ahaar Classic</div>
+  </div>
+</a>
+<a href="c7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c7.webp');">
+    <div class="product-name">Patanjali Barley Dalia</div>
+  </div>
+</a>
+<a href="c8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c8.webp');">
+    <div class="product-name">Pulihora</div>
+  </div>
+</a>
+<a href="c9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c9.jpg');">
+    <div class="product-name">Steel cook Ware</div>
+  </div>
+</a>
+<a href="c10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c10.jpg');">
+    <div class="product-name">Plastic Ware</div>
+  </div>
+</a>
+<a href="c11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c11.webp');">
+    <div class="product-name">Edible Oil</div>
+  </div>
+</a>
+<a href="c12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c12.webp');">
+    <div class="product-name">Ghee</div>
+  </div>
+</a>
+</section>
+
+<h2>Jewellery & Accessories</h2>
+
+<section class="products-container">
+    <a href="j1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j1.jpg');">
+    <div class="product-name">Gold</div>
+  </div>
+</a>
+<a href="j2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j2.jpg');">
+    <div class="product-name">Set's</div>
+  </div>
+</a>
+<a href="j3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j3.jpg');">
+    <div class="product-name">Bangles</div>
+  </div>
+</a>
+<a href="j4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j4.jpg');">
+    <div class="product-name">Bracelet</div>
+  </div>
+</a>
+<a href="j5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j5.jpg');">
+    <div class="product-name">Ring</div>
+  </div>
+</a>
+<a href="j6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j6.jpg');">
+    <div class="product-name">Chain</div>
+  </div>
+</a>
+<a href="j7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j7.jpg');">
+    <div class="product-name">Haram</div>
+  </div>
+</a>
+<a href="j8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j8.jpg');">
+    <div class="product-name">Ear Rings</div>
+  </div>
+</a>
+<a href="j9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j9.jpg');">
+    <div class="product-name">Silver Necklace</div>
+  </div>
+</a>
+<a href="j10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j10.jpg');">
+    <div class="product-name">Long Chain</div>
+  </div>
+</a>
+<a href="j11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j11.jpg');">
+    <div class="product-name">Choker</div>
+  </div>
+</a>
+<a href="j12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j12.jpg');">
+    <div class="product-name">1 Gram Gold</div>
+  </div>
+</a>
+</section>
+
+<h2>Bakery</h2>
+
+  <section class="products-container">
+    <a href="b1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b1.jpg');">
+    <div class="product-name">Chocolate Cake</div>
+  </div>
+</a>
+<a href="b2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b2.jpg');">
+    <div class="product-name">Normal Cake</div>
+  </div>
+</a>
+<a href="b3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b3.jpg');">
+    <div class="product-name">Strawberry Cake</div>
+  </div>
+</a>
+<a href="b4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b4.jpg');">
+    <div class="product-name">Croissant</div>
+  </div>
+</a>
+<a href="b5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b5.jpg');">
+    <div class="product-name">Mixture</div>
+  </div>
+</a>
+<a href="b6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b6.jpg');">
+    <div class="product-name">Samosas</div>
+  </div>
+</a>
+<a href="b7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b7.jpg');">
+    <div class="product-name">Pizzas</div>
+  </div>
+</a>
+<a href="b8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b8.jpg');">
+    <div class="product-name">Jilebi</div>
+  </div>
+</a>
+<a href="b9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b9.jpg');">
+    <div class="product-name">Pootha Rekulu</div>
+  </div>
+</a>
+<a href="b10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b10.jpg');">
+    <div class="product-name">Biscuits</div>
+  </div>
+</a>
+<a href="b11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b11.jpg');">
+    <div class="product-name">Braided Bread</div>
+  </div>
+</a>
+<a href="b12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b12.jpg');">
+    <div class="product-name">Mysore pak</div>
+  </div>
+</a>
+</section>
+
+<h2>Home Decor Items</h2>
+
+  <section class="products-container">
+    <a href="h1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h1.webp');">
+    <div class="product-name">Bedsheets & Sets</div>
+  </div>
+</a>
+<a href="h2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h2.webp');">
+    <div class="product-name">Door Curtains</div>
+  </div>
+</a>
+<a href="h3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h3.webp');">
+    <div class="product-name">Sofa Covers</div>
+  </div>
+</a>
+<a href="h4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h4.webp');">
+    <div class="product-name">Office Chairs</div>
+  </div>
+</a>
+<a href="h5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h5.webp');">
+    <div class="product-name">Shoe Racks</div>
+  </div>
+</a>
+<a href="h6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h6.webp');">
+    <div class="product-name">Kids Chairs</div>
+  </div>
+</a>
+<a href="h7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h7.webp');">
+    <div class="product-name">Mattress</div>
+  </div>
+</a>
+<a href="h8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h8.webp');">
+    <div class="product-name">Benches, Stools & more</div>
+  </div>
+</a>
+<a href="h9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h9.jpg');">
+    <div class="product-name">Dream Catchers</div>
+  </div>
+</a>
+<a href="h10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h10.jpg');">
+    <div class="product-name"> Cradle Chair</div>
+  </div>
+</a>
+<a href="h11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h11.avif');">
+    <div class="product-name">Metal Wall Art</div>
+  </div>
+</a>
+<a href="h12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h12.webp');">
+    <div class="product-name"> Handcrafted Decor</div>
+  </div>
+</a>
+</section>
+
+<h2>Bag's</h2>
+
+  <section class="products-container">
+    <a href="bag1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bf.jpg');">
+    <div class="product-name">Bag Fashion</div>
+  </div>
+</a>
+<a href="bag2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bclg.jpg');">
+    <div class="product-name">College Bag's</div>
+  </div>
+</a>
+<a href="bag3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bschool.jpg');">
+    <div class="product-name">School Bag's</div>
+  </div>
+</a>
+<a href="bag4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bag4.jpg');">
+    <div class="product-name">Luggage Bag's</div>
+  </div>
+</a>
+<a href="bag5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bag5.jpg');">
+    <div class="product-name">Trolley bag's</div>
+  </div>
+</a>
+<a href="bag6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagcarry.jpg');">
+    <div class="product-name">Carry Bag's</div>
+  </div>
+</a>
+<a href="bag7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagcrossbody.jpg');">
+    <div class="product-name">Body Cross Bag's</div>
+  </div>
+</a>
+<a href="bag8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/baghand.jpg');">
+    <div class="product-name">Hand Bag's</div>
+  </div>
+</a>
+<a href="bag9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/baglap.jpg');">
+    <div class="product-name">Laptop Bag's</div>
+  </div>
+</a>
+<a href="bag10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagpack.jpg');">
+    <div class="product-name">Packing Bag's</div>
+  </div>
+</a>
+<a href="bag11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagtrend.jpg');">
+    <div class="product-name">Trending Bag's</div>
+  </div>
+</a>
+<a href="bag12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagwaterproof.jpg');">
+    <div class="product-name">Water Proof Bag's</div>
+  </div>
+</a>
+</section>
+
+
+
+<h2>Mobile | Laptops | Audio</h2>
+<section class="products-container">
+    <a href="Products images/g1.webp" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g1.webp');">
+    <div class="product-name">Smart phones</div>
+  </div>
+</a>
+<a href="Products images/g2.webp" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g2.webp');">
+    <div class="product-name">Chargers & Adapters</div>
+  </div>
+</a>
+<a href="Products images/g3.webp" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g3.webp');">
+    <div class="product-name">Laptops</div>
+  </div>
+</a>
+<a href="Products images/g4.webp" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g4.webp');">
+    <div class="product-name">Headphones And Earbuds</div>
+  </div>
+</a>
+<a href="Products images/g5.webp" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g5.webp');">
+    <div class="product-name">Smart Watches</div>
+  </div>
+</a>
+<a href="Products images/g6.webp" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g6.webp');">
+    <div class="product-name">Tablets</div>
+  </div>
+</a>
+<a href="Products images/g7.jpg" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g7.jpg');">
+    <div class="product-name">Camera</div>
+  </div>
+</a>
+<a href="Products images/g8.jpg" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g8.jpg');">
+    <div class="product-name">Camera Lights & Stands</div>
+  </div>
+</a>
+</a>
+<a href="Products images/" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="Products images/" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="Products images/" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="Products images/" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+</section>
+
+
+    <footer>
+        &copy; 2025 Sooper Store. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    </footer>
+
+    <script>
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Animation for add to cart
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.style.backgroundColor = '#4CAF50';
+                
+                // Update cart count
+                const cartCount = document.querySelector('.cart-count');
+                let count = parseInt(cartCount.textContent) || 0;
+                cartCount.textContent = count + 1;
+                
+                // Add bounce animation to cart icon
+                const cartIcon = document.querySelector('.cart-icon');
+                cartIcon.style.animation = 'none';
+                void cartIcon.offsetWidth; // Trigger reflow
+                cartIcon.style.animation = 'bounce 0.5s';
+                
+                // Reset button after animation
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-cart-plus"></i>';
+                    this.style.backgroundColor = '';
+                }, 1000);
+            });
+        });
+        
+        // Product card hover animations
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 12px 25px rgba(0,0,0,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+        
+        // Scroll reveal animation
+        const animateOnScroll = () => {
+            const productsSections = document.querySelectorAll('.products-section');
+            
+            productsSections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initialize scroll animation
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

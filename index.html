@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sooper Store - Your One-Stop Shopping Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      /* ====== BASE STYLES ====== */
+:root {
+  --primary-color: rgb(50, 50, 105);
+  --secondary-color: #ff6b6b;
+  --accent-color: #4ecdc4;
+  --light-bg: linear-gradient(to right, #8e9eab, #eef2f3);
+  --dark-text: #333;
+  --light-text: white;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+}
+
+/* ====== ANIMATION KEYFRAMES ====== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(78, 205, 196, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(78, 205, 196, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(78, 205, 196, 0.5); }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ====== HEADER STYLES ====== */
+header {
+  background-color: var(--primary-color);
+  background-image: url('superstore img.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  padding: 50px;
+  margin: 10px;
+  color: var(--light-text);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 2px 2px 6px black;
+  position: relative;
+  animation: fadeInDown 0.8s ease-out, pulse 3s ease-in-out infinite;
+  transition: all 0.5s ease;
+}
+
+header:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite alternate;
+}
+
+.cart-icon {
+  position: center;
+  font-size: 1.8rem;
+  color: var(--light-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  animation: bounce 2s infinite;
+}
+
+.cart-icon:hover {
+  transform: scale(1.1);
+  color: var(--secondary-color);
+  animation: shake 0.5s ease;
+  letter-spacing: 1px;
+  transform: scale(1.02);
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+.cart-icon a {
+  color: white;
+  position: right;
+  top: right;
+}
+.cart-icon a:hover{
+  letter-spacing: 1px;
+  transform: scale(1.02);
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+h1:hover {
+  letter-spacing: 1px;
+  transform: scale(1.02);
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* ====== NAVIGATION ====== */
+nav {
+  background-image: url('Products images/product nav.png');
+  background-size: cover;
+  background-position: center;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+nav a {
+  color: var(--light-text);
+  font-size: 20px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.4s ease;
+}
+
+nav a:hover {
+  background-color: rgba(221, 221, 221, 0.3);
+  color: var(--light-text);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+nav a:hover::before {
+  left: 100%;
+}
+
+/* ====== IMAGE SLIDER ====== */
+.image-slider {
+  overflow: hidden;
+  margin: 30px 10px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.slider-container {
+  padding: 10px 0;
+  animation: slideInRight 0.8s ease-out 0.3s both;
+}
+
+.slider-track {
+  display: flex;
+  width: calc(200px * 14);
+  animation: scroll 30s linear infinite;
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+.slider-track a {
+  text-decoration: none;
+  margin: 0 15px;
+  position: relative;
+}
+
+.slider-track img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  animation: float 4s ease-in-out infinite;
+}
+
+.slider-track img:hover {
+  transform: scale(1.15);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  animation: pulse 0.5s ease, glow 2s infinite;
+}
+
+.category-name {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  right: 0;
+  color: var(--dark-text);
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+/* ====== IMAGE GALLERY ====== */
+.image-gallery {
+  display: flex;
+  overflow-x: auto;
+  padding: 30px;
+  margin: 20px 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.image-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  margin: 0 15px;
+  text-align: center;
+  scroll-snap-align: start;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+.gallery-image:hover {
+  transform: scale(1.1);
+  border-color: var(--secondary-color);
+  animation: pulse 0.8s ease, glow 1.5s infinite;
+}
+
+.gallery-caption {
+  margin-top: 15px;
+  color: var(--dark-text);
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+  color: var(--secondary-color);
+  transform: translateY(5px);
+}
+
+/* ====== PRODUCTS SECTION ====== */
+h2 {
+  color: var(--dark-text);
+  font-size: 32px;
+  margin: 30px 0 20px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 15px;
+  animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--light-bg);
+  border-radius: 2px;
+  animation: glow 2s infinite;
+}
+
+/* Products Container */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* 12 columns */
+  gap: 8px;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-out 1s both;
+}
+
+.product-card {
+  height: 100px; /* Reduced from 220px */
+  width: 100px; /* Changed from 100% to fixed width */
+  border-radius: 8px; /* Slightly smaller radius */
+  overflow: hidden;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Lighter shadow */
+  transition: all 0.3s ease;
+  animation: float 5s ease-in-out infinite;
+}
+
+.product-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(199, 216, 219, 0.9);
+  color: var(--dark-text);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .product-name {
+  background: rgba(50, 50, 105, 0.9);
+  color: var(--light-text);
+  padding: 12px 0;
+}
+
+
+.product-card:hover .product-price {
+  transform: scale(1.1);
+  background: var(--secondary-color);
+  color: var(--light-text);
+}
+
+.product-card:hover .add-to-cart {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Adjust related elements to match the smaller size */
+.product-name {
+  font-size: 10px; /* Smaller text */
+  padding: 4px 0; /* Less padding */
+}
+
+/* Adjust hover effects for smaller size */
+.product-card:hover {
+  transform: translateY(-3px); /* Smaller hover movement */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .products-container {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+  }
+  
+  .product-card {
+    height: 80px;
+    width: 80px;
+  }
+  
+  .product-name {
+    font-size: 8px;
+  }
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+  animation: pulse 1.5s ease infinite;
+}
+
+/* Staggered animations for product cards */
+.products-container .product-card:nth-child(1) { 
+  animation-delay: 0.1s, 0.1s;
+}
+.products-container .product-card:nth-child(2) { 
+  animation-delay: 0.3s, 0.3s;
+}
+.products-container .product-card:nth-child(3) { 
+  animation-delay: 0.5s, 0.5s;
+}
+.products-container .product-card:nth-child(4) { 
+  animation-delay: 0.7s, 0.7s;
+}
+.products-container .product-card:nth-child(5) { 
+  animation-delay: 0.9s, 0.9s;
+}
+.products-container .product-card:nth-child(6) { 
+  animation-delay: 1.1s, 1.1s;
+}
+
+/* ====== FOOTER ====== */
+.footerr {
+  background-color: rgb(37, 37, 70);
+  padding: 1rem;
+  margin-left: 50px;
+  margin-right: 10px;
+  color: var(--light-text);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 93.6%;
+  animation: fadeInUp 0.8s ease-out 1.2s both;
+  transition: all 0.3s ease;
+}
+
+.footerr:hover {
+  background-color: rgb(30, 30, 60);
+  transform: translateY(-3px);
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+}
+
+/* ====== SCROLL REVEAL ANIMATION ====== */
+.reveal {
+  position: relative;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+
+
+@media (max-width: 600px) {
+  header {
+    padding: 20px;
+    font-size: 24px;
+    flex-direction: column;
+    animation: fadeInDown 0.8s ease-out, pulse 2s ease-in-out infinite;
+  }
+  
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+  
+  nav a {
+    width: auto;
+  }
+  
+  .products-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .image-gallery {
+    padding: 15px;
+  }
+  
+  .gallery-image {
+    width: 140px;
+    height: 140px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-left: 10px;
+    animation: fadeIn 0.8s ease-out 0.8s both;
+  }
+  
+  .products-container {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  
+  .product-card {
+    height: 160px;
+  }
+  
+  footer {
+    font-size: 16px;
+    width: 90%;
+  }
+}
+.nav-search {
+      display: flex;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-search:focus-within {
+      transform: scale(1.05);
+    }
+
+    .search-input {
+      padding: 8px 10px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      width: 250px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 2px rgba(124, 195, 223, 0.5);
+    }
+
+    .search-button {
+      padding: 8px 12px;
+      background-color: #7cc3df;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-button:hover {
+      background-color: #5ca8c4;
+    }
+
+    .search-button i {
+      color: black;
+    }
+     .search-input {
+        width: 180px;
+      }
+
+      /* ====== ENHANCED MEGA FOOTER ====== */
+/* ====== ENHANCED HORIZONTAL FOOTER STYLES ====== */
+.mega-footer {
+  background: linear-gradient(135deg, #2a2a53 0%, #1a1a4a 100%);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  width: 100%;
+  margin-top: 60px;
+  overflow: hidden;
+  box-shadow: 0 -5px 30px rgba(0,0,0,0.1);
+}
+
+.mega-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z"/></svg>');
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-top {
+  padding: 50px 0 40px;
+}
+
+.footer-content-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 15px;
+}
+
+.footer-heading {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.footer-section:hover .footer-heading::after {
+  width: 80px;
+}
+
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.footer-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  position: relative;
+}
+
+.footer-link::before {
+  content: '→';
+  color: var(--accent-color);
+  margin-right: 5px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: white;
+  transform: translateX(8px);
+}
+
+.footer-link:hover::before {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+/* Contact Section Specific Styles */
+.contact-section {
+  min-width: 300px;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.whatsapp {
+  background: rgba(37, 211, 102, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 3px solid #25D366;
+}
+
+.phone {
+  background: rgba(74, 144, 226, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 3px solid #4a90e2;
+}
+
+.timing {
+  background: rgba(255, 204, 92, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 3px solid #ffcc5c;
+}
+
+.contact-link i {
+  font-size: 1.1rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.whatsapp i { color: #25D366; }
+.phone i { color: #4a90e2; }
+.timing i { color: #ffcc5c; }
+
+.contact-link:hover {
+  transform: translateX(5px);
+  color: white;
+}
+
+/* App Download Styles */
+.app-download h5 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: white;
+  font-weight: 500;
+}
+
+.app-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.app-btn {
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.app-btn:hover {
+  transform: translateY(-5px);
+}
+
+.app-btn img {
+  height: 45px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.app-btn:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Footer Bottom Styles */
+.footer-bottom {
+  padding: 25px 0;
+  background: rgba(0,0,0,0.15);
+}
+
+.footer-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.payment-methods {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.payment-methods i {
+  font-size: 1.8rem;
+  color: rgba(255,255,255,0.7);
+  transition: all 0.3s ease;
+}
+
+.payment-methods i:hover {
+  color: white;
+  transform: translateY(-3px);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  color: white;
+  background: rgba(255,255,255,0.1);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: var(--accent-color);
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .footer-content-horizontal {
+    gap: 20px;
+  }
+  
+  .footer-section {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content-horizontal {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .payment-methods, .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-buttons {
+    flex-direction: column;
+  }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Sooper Store</h1>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <a href="login.html"><i class="fas fa-user"></i> Login</a>
+            
+        </div>
+    </header>
+    
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <!--<a href="login.html"><i class="fas fa-user"></i> Login</a>-->
+        <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <!--<a href="#"><i class="fas fa-search"></i> Search</a>-->
+        <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+        <div class="nav-search">
+        <input type="text" class="search-input" placeholder="Search products">
+        <button class="search-button"><i class="fa fa-search"></i></button>
+      </div>
+    </nav>
+    
+    <!-- Image Slider -->
+    <div class="image-slider">
+        <div class="slider-container">
+            <div class="slider-track">
+                <a href="fruits.html">
+                    <img src="Products images/fh.webp" alt="Fruits">
+                    <div class="category-name">Fruits</div>
+                </a>
+                <a href="Home Decor Item's.html">
+                    <img src="Products images/home.webp" alt="Home Decor">
+                    <div class="category-name">Home Decor</div>
+                </a>
+                <a href="Kitchenware.html">
+                    <img src="Products images/kitchen.jpg" alt="Kitchenware">
+                    <div class="category-name">Kitchenware</div>
+                </a>
+                <a href="Electrical's.html">
+                    <img src="Products images/electrical.webp" alt="Electrical">
+                    <div class="category-name">Electrical</div>
+                </a>
+                <a href="Vegetables.html">
+                    <img src="Products images/vegetables.webp" alt="Vegetables">
+                    <div class="category-name">Vegetables</div>
+                </a>
+                <a href="Bakery.html">
+                    <img src="Products images/bekary.jpg" alt="Bakery">
+                    <div class="category-name">Bakery</div>
+                </a>
+                <a href="Dairy.html">
+                    <img src="Products images/dairy.jpeg" alt="Dairy">
+                    <div class="category-name">Dairy</div>
+                </a>
+                <a href="Bags.html">
+                    <img src="Products images/bagh.png" alt="Bags">
+                    <div class="category-name">Bags</div>
+                </a>
+                <a href="Toy's.html">
+                    <img src="Products images/toysh.png" alt="Toys">
+                    <div class="category-name">Toys</div>
+                </a>
+                <a href="kid's.html">
+                    <img src="Products images/kidsh.png" alt="Kids Wear">
+                    <div class="category-name">Kids Wear</div>
+                </a>
+                <a href="Men's.html">
+                    <img src="Products images/men wear.webp" alt="Men's Wear">
+                    <div class="category-name">Men's Wear</div>
+                </a>
+                <a href="Women.html">
+                    <img src="Products images/Women Dresses.webp" alt="Women Dresses">
+                    <div class="category-name">Women Dresses</div>
+                </a>
+                <a href="Jewellery & Accessories.html">
+                    <img src="Products images/jewellery & Accessories.png" alt="Jewellery">
+                    <div class="category-name">Jewellery</div>
+                </a>
+                <a href="Footwear.html">
+                    <img src="Products images/footwearh.webp" alt="Footwear">
+                    <div class="category-name">Footwear</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Products Grid -->
+    <h2>Fruits</h2>
+<section class="products-container">
+    <a href="f1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f1.jpg');">
+    <div class="product-name">Orange</div>
+  </div>
+</a>
+<a href="f2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f2.jpg');">
+    <div class="product-name">Mango</div>
+  </div>
+</a>
+<a href="f3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f3.jpg');">
+    <div class="product-name">Banana</div>
+  </div>
+</a>
+<a href="f4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f4.jpg');">
+    <div class="product-name">Apple</div>
+  </div>
+</a>
+<a href="f5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f5.jpg');">
+    <div class="product-name">Watermelon</div>
+  </div>
+</a>
+<a href="f6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f6.jpg');">
+    <div class="product-name">Dragon fruit</div>
+  </div>
+</a>
+<a href="f7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f7.jpg');">
+    <div class="product-name">Pineapple</div>
+  </div>
+</a>
+<a href="f8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f8.jpg');">
+    <div class="product-name">Strawberry</div>
+  </div>
+</a>
+<a href="f9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f9.jpg');">
+    <div class="product-name">Guavas</div>
+  </div>
+</a>
+<a href="f10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f10.jpg');">
+    <div class="product-name">Kiwis</div>
+  </div>
+</a>
+<a href="f11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f11.jpg');">
+    <div class="product-name">Cherries</div>
+  </div>
+</a>
+<a href="f12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/f12.jpg');">
+    <div class="product-name">Pomegranates</div>
+  </div>
+</a>
+</section>
+
+  <h2>Electrical Products</h2>
+
+<section class="products-container">
+    <a href="e1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e1.webp');">
+    <div class="product-name">Fans & Air Coolers</div>
+  </div>
+</a>
+<a href="e2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e2.webp');">
+    <div class="product-name">Water Purifiers</div>
+  </div>
+</a>
+<a href="e3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e3.webp');">
+    <div class="product-name">Irons & Steamers</div>
+  </div>
+</a>
+<a href="e4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e4.webp');">
+    <div class="product-name">Geysers & Heaters</div>
+  </div>
+</a>
+<a href="e5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e5.webp');">
+    <div class="product-name">Vacuum Cleaners</div>
+  </div>
+</a>
+<a href="e6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e6.webp');">
+    <div class="product-name">Air Purifiers</div>
+  </div>
+</a>
+<a href="e7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e7.webp');">
+    <div class="product-name">Invertors & Stabilizers</div>
+  </div>
+</a>
+<a href="e8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e8.webp');">
+    <div class="product-name">Sewing Machines</div>
+  </div>
+</a>
+<a href="e9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e9.webp');">
+    <div class="product-name">Breakfast Appliances</div>
+  </div>
+</a>
+<a href="e10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e10.webp');">
+    <div class="product-name">Cooking Appliances</div>
+  </div>
+</a>
+<a href="e11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e11.webp');">
+    <div class="product-name">Juicers & Mixer Grinders</div>
+  </div>
+</a>
+<a href="e12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e12.webp');">
+    <div class="product-name">Chimneys & Hobs</div>
+  </div>
+</a>
+</section>
+
+<h2>Cooking Essentials</h2>
+<section class="products-container">
+    <a href="c1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c1.webp');">
+    <div class="product-name">Atta Flours</div>
+  </div>
+</a>
+<a href="c2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c2.webp');">
+    <div class="product-name">Besan</div>
+  </div>
+</a>
+<a href="c3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c3.webp');">
+    <div class="product-name"> Barley Daliya</div>
+  </div>
+</a>
+<a href="c4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c4.webp');">
+    <div class="product-name">Quinoa Flour</div>
+  </div>
+</a>
+<a href="c5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c5.webp');">
+    <div class="product-name">Oats Meal Daliya</div>
+  </div>
+</a>
+<a href="c6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c6.webp');">
+    <div class="product-name">Ahaar Classic</div>
+  </div>
+</a>
+<a href="c7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c7.webp');">
+    <div class="product-name">Patanjali Barley Dalia</div>
+  </div>
+</a>
+<a href="c8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c8.webp');">
+    <div class="product-name">Pulihora</div>
+  </div>
+</a>
+<a href="c9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c9.jpg');">
+    <div class="product-name">Steel cook Ware</div>
+  </div>
+</a>
+<a href="c10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c10.jpg');">
+    <div class="product-name">Plastic Ware</div>
+  </div>
+</a>
+<a href="c11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c11.webp');">
+    <div class="product-name">Edible Oil</div>
+  </div>
+</a>
+<a href="c12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c12.webp');">
+    <div class="product-name">Ghee</div>
+  </div>
+</a>
+</section>
+
+<h2>Jewellery & Accessories</h2>
+
+<section class="products-container">
+    <a href="j1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j1.jpg');">
+    <div class="product-name">Gold</div>
+  </div>
+</a>
+<a href="j2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j2.jpg');">
+    <div class="product-name">Set's</div>
+  </div>
+</a>
+<a href="j3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j3.jpg');">
+    <div class="product-name">Bangles</div>
+  </div>
+</a>
+<a href="j4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j4.jpg');">
+    <div class="product-name">Bracelet</div>
+  </div>
+</a>
+<a href="j5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j5.jpg');">
+    <div class="product-name">Ring</div>
+  </div>
+</a>
+<a href="j6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j6.jpg');">
+    <div class="product-name">Chain</div>
+  </div>
+</a>
+<a href="j7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j7.jpg');">
+    <div class="product-name">Haram</div>
+  </div>
+</a>
+<a href="j8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j8.jpg');">
+    <div class="product-name">Ear Rings</div>
+  </div>
+</a>
+<a href="j9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j9.jpg');">
+    <div class="product-name">Silver Necklace</div>
+  </div>
+</a>
+<a href="j10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j10.jpg');">
+    <div class="product-name">Long Chain</div>
+  </div>
+</a>
+<a href="j11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j11.jpg');">
+    <div class="product-name">Choker</div>
+  </div>
+</a>
+<a href="j12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/j12.jpg');">
+    <div class="product-name">1 Gram Gold</div>
+  </div>
+</a>
+</section>
+
+<h2>Bakery</h2>
+
+  <section class="products-container">
+    <a href="b1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b1.jpg');">
+    <div class="product-name">Chocolate Cake</div>
+  </div>
+</a>
+<a href="b2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b2.jpg');">
+    <div class="product-name">Normal Cake</div>
+  </div>
+</a>
+<a href="b3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b3.jpg');">
+    <div class="product-name">Strawberry Cake</div>
+  </div>
+</a>
+<a href="b4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b4.jpg');">
+    <div class="product-name">Croissant</div>
+  </div>
+</a>
+<a href="b5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b5.jpg');">
+    <div class="product-name">Mixture</div>
+  </div>
+</a>
+<a href="b6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b6.jpg');">
+    <div class="product-name">Samosas</div>
+  </div>
+</a>
+<a href="b7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b7.jpg');">
+    <div class="product-name">Pizzas</div>
+  </div>
+</a>
+<a href="b8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b8.jpg');">
+    <div class="product-name">Jilebi</div>
+  </div>
+</a>
+<a href="b9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b9.jpg');">
+    <div class="product-name">Pootha Rekulu</div>
+  </div>
+</a>
+<a href="b10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b10.jpg');">
+    <div class="product-name">Biscuits</div>
+  </div>
+</a>
+<a href="b11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b11.jpg');">
+    <div class="product-name">Braided Bread</div>
+  </div>
+</a>
+<a href="b12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/b12.jpg');">
+    <div class="product-name">Mysore pak</div>
+  </div>
+</a>
+</section>
+
+<h2>Home Decor Items</h2>
+
+  <section class="products-container">
+    <a href="h1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h1.webp');">
+    <div class="product-name">Bedsheets & Sets</div>
+  </div>
+</a>
+<a href="h2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h2.webp');">
+    <div class="product-name">Door Curtains</div>
+  </div>
+</a>
+<a href="h3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h3.webp');">
+    <div class="product-name">Sofa Covers</div>
+  </div>
+</a>
+<a href="h4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h4.webp');">
+    <div class="product-name">Office Chairs</div>
+  </div>
+</a>
+<a href="h5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h5.webp');">
+    <div class="product-name">Shoe Racks</div>
+  </div>
+</a>
+<a href="h6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h6.webp');">
+    <div class="product-name">Kids Chairs</div>
+  </div>
+</a>
+<a href="h7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h7.webp');">
+    <div class="product-name">Mattress</div>
+  </div>
+</a>
+<a href="h8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h8.webp');">
+    <div class="product-name">Benches, Stools & more</div>
+  </div>
+</a>
+<a href="h9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h9.jpg');">
+    <div class="product-name">Dream Catchers</div>
+  </div>
+</a>
+<a href="h10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h10.jpg');">
+    <div class="product-name"> Cradle Chair</div>
+  </div>
+</a>
+<a href="h11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h11.avif');">
+    <div class="product-name">Metal Wall Art</div>
+  </div>
+</a>
+<a href="h12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/h12.webp');">
+    <div class="product-name"> Handcrafted Decor</div>
+  </div>
+</a>
+</section>
+
+<h2>Bag's</h2>
+
+  <section class="products-container">
+    <a href="bag1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bf.jpg');">
+    <div class="product-name">Bag Fashion</div>
+  </div>
+</a>
+<a href="bag2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bclg.jpg');">
+    <div class="product-name">College Bag's</div>
+  </div>
+</a>
+<a href="bag3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bschool.jpg');">
+    <div class="product-name">School Bag's</div>
+  </div>
+</a>
+<a href="bag4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bag4.jpg');">
+    <div class="product-name">Luggage Bag's</div>
+  </div>
+</a>
+<a href="bag5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bag5.jpg');">
+    <div class="product-name">Trolley bag's</div>
+  </div>
+</a>
+<a href="bag6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagcarry.jpg');">
+    <div class="product-name">Carry Bag's</div>
+  </div>
+</a>
+<a href="bag7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagcrossbody.jpg');">
+    <div class="product-name">Body Cross Bag's</div>
+  </div>
+</a>
+<a href="bag8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/baghand.jpg');">
+    <div class="product-name">Hand Bag's</div>
+  </div>
+</a>
+<a href="bag9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/baglap.jpg');">
+    <div class="product-name">Laptop Bag's</div>
+  </div>
+</a>
+<a href="bag10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagpack.jpg');">
+    <div class="product-name">Packing Bag's</div>
+  </div>
+</a>
+<a href="bag11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagtrend.jpg');">
+    <div class="product-name">Trending Bag's</div>
+  </div>
+</a>
+<a href="bag12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/bagwaterproof.jpg');">
+    <div class="product-name">Water Proof Bag's</div>
+  </div>
+</a>
+</section>
+
+
+
+<h2>Mobile | Laptops | Audio</h2>
+<section class="products-container">
+    <a href="g1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g1.webp');">
+    <div class="product-name">Smart phones</div>
+  </div>
+</a>
+<a href="g2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g2.webp');">
+    <div class="product-name">Chargers & Adapters</div>
+  </div>
+</a>
+<a href="g3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g3.webp');">
+    <div class="product-name">Laptops</div>
+  </div>
+</a>
+<a href="g4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g4.webp');">
+    <div class="product-name">Headphones And Earbuds</div>
+  </div>
+</a>
+<a href="g5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g5.webp');">
+    <div class="product-name">Smart Watches</div>
+  </div>
+</a>
+<a href="g6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g6.webp');">
+    <div class="product-name">Tablets</div>
+  </div>
+</a>
+<a href="g7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g7.jpg');">
+    <div class="product-name">Camera</div>
+  </div>
+</a>
+<a href="g8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/g8.jpg');">
+    <div class="product-name">Camera Lights & Stands</div>
+  </div>
+</a>
+</section>
+
+<!-- ====== MEGA FOOTER ====== -->
+<!-- ====== ENHANCED HORIZONTAL MEGA FOOTER ====== -->
+<footer class="mega-footer">
+  <div class="footer-top">
+    <div class="footer-container">
+      <!-- Main Footer Content - Horizontal Layout -->
+      <div class="footer-content-horizontal">
+        <!-- Category Section -->
+        <div class="footer-section">
+          <h4 class="footer-heading">All Categories</h4>
+          <div class="footer-links-grid">
+            <a href="fruits.html" class="footer-link">Fruits & Vegetables</a>
+            <a href="Electrical's.html" class="footer-link">Electronics</a>
+            <a href="Men's.html" class="footer-link">Fashion</a>
+            <a href="Home Decor Item's.html" class="footer-link">Home & Lifestyle</a>
+            <a href="Bakery.html" class="footer-link">Bakery & Dairy</a>
+            <a href="Jewellery & Accessories.html" class="footer-link">Jewellery</a>
+            <a href="Bags.html" class="footer-link">Bags & Accessories</a>
+          </div>
+        </div>
+
+        <!-- Customer Services Section -->
+        <div class="footer-section">
+          <h4 class="footer-heading">Customer Services</h4>
+          <div class="footer-links-grid">
+            <a href="contact.html" class="footer-link">Contact Us</a>
+            <a href="#" class="footer-link">FAQs</a>
+            <a href="#" class="footer-link">Shipping Policy</a>
+            <a href="#" class="footer-link">Returns & Refunds</a>
+            <a href="#" class="footer-link">Track Your Order</a>
+            <a href="#" class="footer-link">Cancellation Policy</a>
+            <a href="#" class="footer-link">Report a Problem</a>
+          </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="footer-section">
+          <h4 class="footer-heading">About Sooper Store</h4>
+          <div class="footer-links-grid">
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Blog</a>
+            <a href="#" class="footer-link">Press</a>
+            <a href="#" class="footer-link">Corporate</a>
+            <a href="#" class="footer-link">Wholesale</a>
+            <a href="#" class="footer-link">Sell on Sooper</a>
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-section contact-section">
+          <h4 class="footer-heading">Need Help?</h4>
+          <div class="contact-methods">
+            <a href="https://wa.me/917000123123" class="contact-link whatsapp">
+              <i class="fab fa-whatsapp"></i> WhatsApp: 7000 123 123
+            </a>
+            <a href="tel:18001231234" class="contact-link phone">
+              <i class="fas fa-phone-alt"></i> Call: 1800 123 1234
+            </a>
+            <div class="contact-link timing">
+              <i class="far fa-clock"></i> 8 AM - 10 PM, 365 Days
+            </div>
+          </div>
+          
+          <!-- App Download -->
+          <div class="app-download">
+            <h5>Download Our App</h5>
+            <div class="app-buttons">
+              <a href="#" class="app-btn">
+                <img src="https://i.imgur.com/5f24UVW.png" alt="Google Play">
+              </a>
+              <a href="#" class="app-btn">
+                <img src="https://i.imgur.com/8KVvNzX.png" alt="App Store">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="footer-container">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          © 2025 Sooper Store. All Rights Reserved.
+        </div>
+        
+        <div class="payment-methods">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-amex"></i>
+          <i class="fab fa-cc-paypal"></i>
+          <i class="fas fa-university"></i>
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <div class="footerr">
+        &copy; 2025 Super Store. All rights reserved.
+  </div>
+
+  <script>
+    // Search functionality
+    const searchInput = document.querySelector(".search-input");
+    const productCards = document.querySelectorAll(".product-card");
+
+    searchInput.addEventListener("keyup", function () {
+      const filter = searchInput.value.toLowerCase();
+
+      productCards.forEach((card, index) => {
+        const name = card.querySelector(".product-name").textContent.toLowerCase();
+        if (name.includes(filter)) {
+          card.parentElement.style.display = "block";
+          // Add animation when showing
+          card.style.animation = `fadeInUp 0.6s ${index * 0.1}s forwards`;
+        } else {
+          card.parentElement.style.display = "none";
+        }
+      });
+    });
+
+    // Add hover effect for touch devices
+    document.addEventListener('touchstart', function() {}, true);
+    // Footer accordion for mobile
+document.addEventListener('DOMContentLoaded', function() {
+  const footerCols = document.querySelectorAll('.footer-col');
+  
+  function setupFooterAccordion() {
+    if (window.innerWidth <= 768) {
+      footerCols.forEach(col => {
+        const header = col.querySelector('h4');
+        const content = col.querySelector('ul, .contact-methods, .app-download');
+        
+        if (header && content) {
+          header.style.cursor = 'pointer';
+          content.style.display = 'none';
+          
+          header.addEventListener('click', function() {
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            this.classList.toggle('active');
+          });
+        }
+      });
+    } else {
+      footerCols.forEach(col => {
+        const content = col.querySelector('ul, .contact-methods, .app-download');
+        if (content) content.style.display = 'block';
+      });
+    }
+  }
+  
+  // Initialize and update on resize
+  setupFooterAccordion();
+  window.addEventListener('resize', setupFooterAccordion);
+  
+  // Smooth scroll to top
+  document.querySelector('.back-to-top').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+  </script>
+</body>
+</html>

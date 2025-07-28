@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmed - Sooper Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .success-icon {
+      font-size: 80px;
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+    .order-info {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 25px 0;
+      text-align: left;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .info-row:last-child {
+      border-bottom: none;
+      font-weight: bold;
+    }
+    .order-number {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+    .track-order {
+      margin-top: 30px;
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="success-icon">✓</div>
+    <h1>Order Confirmed!</h1>
+    <p>Thank you for your purchase. Your order has been placed successfully.</p>
+    
+    <div class="order-number">
+      Order #<span id="order-number">${Math.floor(100000 + Math.random() * 900000)}</span>
+    </div>
+    
+    <div class="order-info">
+      <div class="info-row">
+        <span>Payment Method:</span>
+        <span id="payment-method">Cash on Delivery</span>
+      </div>
+      <div class="info-row">
+        <span>Amount Paid:</span>
+        <span id="amount-paid">₹0.00</span>
+      </div>
+      <div class="info-row">
+        <span>Delivery Address:</span>
+        <span id="delivery-address">Loading...</span>
+      </div>
+    </div>
+    
+    <div class="track-order">
+      <p>We'll send you updates on your order status.</p>
+      <a href="#" class="whatsapp-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/768px-WhatsApp.svg.png" width="20" height="20" alt="WhatsApp">
+        Track on WhatsApp
+      </a>
+    </div>
+    
+    <a href="index.html" class="btn">Continue Shopping</a>
+  </div>
+
+  <script>
+    // Generate random order number
+    document.getElementById('order-number').textContent = 
+      Math.floor(100000 + Math.random() * 900000);
+    
+    // Display payment info
+    document.getElementById('payment-method').textContent = 
+      localStorage.getItem('paymentMethod') || 'Cash on Delivery';
+    
+    document.getElementById('amount-paid').textContent = 
+      '₹' + (localStorage.getItem('cartTotal') || '0.00');
+    
+    // Display address
+    const address = JSON.parse(localStorage.getItem('deliveryAddress'));
+    if (address) {
+      document.getElementById('delivery-address').innerHTML = `
+        ${address.fullName}<br>
+        ${address.address}<br>
+        ${address.city}, ${address.state} - ${address.pincode}<br>
+        Phone: ${address.phone}
+      `;
+    }
+    
+    // Clear cart after successful order
+    if (localStorage.getItem('paymentStatus') === 'success') {
+      localStorage.removeItem('cart');
+      localStorage.removeItem('cartTotal');
+    }
+  </script>
+</body>
+</html>

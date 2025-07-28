@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Mission - Sooper Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #f59e0b;
+      --accent: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    /* Modern Navigation */
+    nav {
+      background: var(--dark);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-logo {
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-logo i {
+      margin-right: 0.5rem;
+      color: var(--secondary);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+    
+    .nav-links a.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .nav-links a.active:hover {
+      background: #1d4ed8;
+    }
+    
+    /* Hero Section */
+    .mission-hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      color: white;
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mission-hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(transparent, var(--light));
+      z-index: 1;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .mission-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      animation: fadeInDown 1s ease;
+    }
+    
+    .mission-hero p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+    
+    /* Mission Content */
+    .mission-content {
+      max-width: 1200px;
+      margin: -3rem auto 5rem;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .mission-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 3rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 3rem;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+    }
+    
+    .mission-card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      color: #4b5563;
+    }
+    
+    .mission-details {
+      margin-top: 3rem;
+    }
+    
+    .mission-details h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .mission-details h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .mission-details ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .mission-details li {
+      background: var(--light);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: flex-start;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+    
+    .mission-details li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .mission-details li i {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: white;
+      padding: 5rem 2rem;
+      margin: 5rem 0;
+      text-align: center;
+    }
+    
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    
+    .stat-item {
+      padding: 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 2rem 2rem;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .footer-logo i {
+      color: var(--secondary);
+      margin-right: 0.5rem;
+    }
+    
+    .footer-about {
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+    
+    .footer-links h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--secondary);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.7;
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+      }
+      
+      .nav-logo {
+        margin-bottom: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .mission-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .mission-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .mission-card {
+        padding: 2rem;
+      }
+      
+      .mission-details ul {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .mission-hero {
+        padding: 6rem 1rem;
+      }
+      
+      .mission-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .mission-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Modern Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fas fa-store"></i> Sooper Store
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="mission.html" class="active"><i class="fas fa-bullseye"></i> Mission</a>
+        <a href="vision.html"><i class="fas fa-eye"></i> Vision</a>
+        <a href="values.html"><i class="fas fa-heart"></i> Values</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="mission-hero">
+    <div class="hero-content">
+      <h1>Our Mission</h1>
+      <p>Guiding everything we do at Sooper Store</p>
+    </div>
+  </section>
+
+  <!-- Mission Content -->
+  <div class="mission-content">
+    <div class="mission-card">
+      <p>At Sooper Store, we are committed to making everyday shopping a delightful experience by offering the freshest products, competitive prices, and friendly service while maintaining the highest standards of quality and hygiene. Our mission drives every decision we make and every interaction we have with our valued customers.</p>
+      
+      <div class="mission-details">
+        <h2>How We Achieve This</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Daily Quality Checks</strong>
+              <p>Every product undergoes rigorous quality inspection before reaching our shelves</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-tag"></i>
+            <div>
+              <strong>Price Matching</strong>
+              <p>We guarantee competitive prices with our price match policy</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+              <strong>Staff Training</strong>
+              <p>Comprehensive customer service training for all team members</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-hand-sparkles"></i>
+            <div>
+              <strong>Hygiene Standards</strong>
+              <p>Stringent cleanliness protocols throughout our stores</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-truck"></i>
+            <div>
+              <strong>Fast Delivery</strong>
+              <p>Efficient logistics for timely product delivery</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-recycle"></i>
+            <div>
+              <strong>Sustainable Practices</strong>
+              <p>Environmentally responsible operations</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Stores Across India</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50K+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2.5K+</div>
+        <div class="stat-label">Quality Products</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99%</div>
+        <div class="stat-label">Customer Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <i class="fas fa-store"></i> Sooper Store
+        </div>
+        <p class="footer-about">
+          Your trusted shopping destination since 2010, committed to quality and customer satisfaction.
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <div class="footer-links">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="vision.html">Our Vision</a></li>
+            <li><a href="values.html">Our Values</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <div class="footer-links">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2023 Sooper Store. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Simple animation trigger
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.mission-card, .mission-details li');
+      
+      animatedElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 200 * index);
+      });
+    });
+  </script>
+</body>
+</html>

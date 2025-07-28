@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UPI Payment - Sooper Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .payment-amount {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .upi-apps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .upi-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .upi-app:hover {
+      border-color: #007bff;
+      background: #f0f7ff;
+    }
+    .upi-app img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+    .upi-app span {
+      font-size: 12px;
+    }
+    .manual-upi {
+      margin-top: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .verify-btn {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .back-btn {
+      background-color: #6c757d;
+      color: white;
+    }
+    .pay-btn {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📱 UPI Payment</h1>
+    
+    <div class="payment-amount" id="payment-amount">₹0.00</div>
+    
+    <div class="upi-apps">
+      <div class="upi-app" onclick="selectUPIApp('gpay')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg/1200px-Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg.png" alt="Google Pay">
+        <span>Google Pay</span>
+      </div>
+      <div class="upi-app" onclick="selectUPIApp('phonepe')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/PhonePe_Logo.svg/2560px-PhonePe_Logo.svg.png" alt="PhonePe">
+        <span>PhonePe</span>
+      </div>
+      <div class="upi-app" onclick="selectUPIApp('paytm')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/800px-Paytm_logo.png" alt="Paytm">
+        <span>Paytm</span>
+      </div>
+      <div class="upi-app" onclick="selectUPIApp('amazonpay')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon Pay">
+        <span>Amazon Pay</span>
+      </div>
+      <div class="upi-app" onclick="selectUPIApp('bhim')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/BHIM_Logo.svg/1200px-BHIM_Logo.svg.png" alt="BHIM">
+        <span>BHIM</span>
+      </div>
+      <div class="upi-app" onclick="selectUPIApp('other')">
+        <div style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;font-size:24px;">📱</div>
+        <span>Other UPI App</span>
+      </div>
+    </div>
+    
+    <div class="manual-upi">
+      <h3>Or Enter UPI ID</h3>
+      <div class="form-group">
+        <label for="upi-id">UPI ID</label>
+        <input type="text" id="upi-id" placeholder="yourname@upi">
+      </div>
+      <button class="verify-btn" onclick="verifyUPI()">Verify UPI ID</button>
+    </div>
+    
+    <div class="buttons">
+      <a href="payment.html" class="btn back-btn">← Back</a>
+      <button class="btn pay-btn" onclick="processUPIPayment()">Pay Now</button>
+    </div>
+  </div>
+
+  <script>
+    // Display payment amount
+    document.getElementById('payment-amount').textContent = 
+      '₹' + (localStorage.getItem('cartTotal') || '0.00');
+    
+    let selectedApp = '';
+    let upiVerified = false;
+    
+    function selectUPIApp(app) {
+      selectedApp = app;
+      document.querySelectorAll('.upi-app').forEach(el => {
+        el.style.borderColor = '#ddd';
+        el.style.backgroundColor = 'white';
+      });
+      event.currentTarget.style.borderColor = '#007bff';
+      event.currentTarget.style.backgroundColor = '#f0f7ff';
+    }
+    
+    function verifyUPI() {
+      const upiId = document.getElementById('upi-id').value;
+      if (!upiId.includes('@')) {
+        alert('Please enter a valid UPI ID');
+        return;
+      }
+      upiVerified = true;
+      alert('UPI ID verified successfully!');
+    }
+    
+    function processUPIPayment() {
+      if (!selectedApp && !upiVerified) {
+        alert('Please select a UPI app or enter your UPI ID');
+        return;
+      }
+      
+      // Simulate payment processing
+      setTimeout(() => {
+        localStorage.setItem('paymentMethod', 'UPI');
+        localStorage.setItem('paymentStatus', 'success');
+        window.location.href = 'payment-success.html';
+      }, 2000);
+      
+      // Show loading state
+      const btn = document.querySelector('.pay-btn');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+    }
+  </script>
+</body>
+</html>

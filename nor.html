@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment - Sooper Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+    .order-summary {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .summary-row:last-child {
+      border-bottom: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .address-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .address-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .address-details p {
+      margin: 5px 0;
+    }
+    .change-address {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .payment-methods {
+      margin-top: 30px;
+    }
+    .payment-method {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .payment-method:hover {
+      background: #e9ecef;
+    }
+    .payment-icon {
+      font-size: 24px;
+      margin-right: 15px;
+      width: 40px;
+      text-align: center;
+    }
+    .payment-details {
+      flex-grow: 1;
+    }
+    .payment-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .payment-desc {
+      color: #666;
+      font-size: 14px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .back-btn {
+      background-color: #6c757d;
+      color: white;
+    }
+    .back-btn:hover {
+      background-color: #5a6268;
+    }
+    .pay-btn {
+      background-color: #28a745;
+      color: white;
+    }
+    .pay-btn:hover {
+      background-color: #218838;
+    }
+    /* UPI Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: modalFadeIn 0.3s;
+    }
+    @keyframes modalFadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .close-modal {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .upi-qr {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .upi-qr img {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      background: white;
+    }
+    .upi-id {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-family: monospace;
+      margin: 15px 0;
+      cursor: pointer;
+      position: relative;
+    }
+    .upi-id:hover {
+      background: #e9ecef;
+    }
+    .copy-notification {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .show-notification {
+      opacity: 1;
+    }
+    .payment-instructions {
+      font-size: 14px;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💳 Payment</h1>
+    
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span id="subtotal">₹0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery:</span>
+        <span>FREE</span>
+      </div>
+      <div class="summary-row">
+        <span>Total:</span>
+        <span id="order-total">₹0.00</span>
+      </div>
+    </div>
+    
+    <div class="address-section">
+      <div class="address-header">
+        <h2>Delivery Address</h2>
+        <a href="address.html" class="change-address">Change Address</a>
+      </div>
+      <div class="address-details" id="address-details">
+        <!-- Address will be inserted here -->
+      </div>
+    </div>
+    
+    <div class="payment-methods">
+      <h2>Select Payment Method</h2>
+      
+      <div class="payment-method" onclick="selectPayment('upi')">
+        <div class="payment-icon">📱</div>
+        <div class="payment-details">
+          <div class="payment-title">UPI Payment</div>
+          <div class="payment-desc">Pay using any UPI app</div>
+        </div>
+      </div>
+      
+      <div class="payment-method" onclick="selectPayment('card')">
+        <div class="payment-icon">💳</div>
+        <div class="payment-details">
+          <div class="payment-title">Credit/Debit Card</div>
+          <div class="payment-desc">Pay using your card</div>
+        </div>
+      </div>
+      
+      <div class="payment-method" onclick="selectPayment('netbanking')">
+        <div class="payment-icon">🏦</div>
+        <div class="payment-details">
+          <div class="payment-title">Net Banking</div>
+          <div class="payment-desc">Pay directly from your bank</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="buttons">
+      <a href="cart.html" class="btn back-btn">← Back to Cart</a>
+      <button id="pay-btn" class="btn pay-btn" onclick="processPayment()">Complete Payment →</button>
+    </div>
+  </div>
+
+  <!-- UPI Payment Modal -->
+  <div id="upiModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2 style="text-align: center;">UPI Payment</h2>
+      
+      <div class="upi-qr">
+        <!-- Replace with your actual QR code image -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9908521287@ybl&pn=Sooper%20Store&am=${getOrderTotal()}&cu=INR" alt="UPI QR Code">
+      </div>
+      
+      <div class="upi-id" onclick="copyUPI()">
+        <div class="copy-notification" id="copyNotification">Copied!</div>
+        <span id="upiId">9908521287@ybl</span>
+      </div>
+      
+      <div class="payment-instructions">
+        <p><strong>Payment Instructions:</strong></p>
+        <ol>
+          <li>Scan the QR code using any UPI app</li>
+          <li>OR Click on the UPI ID above to copy it</li>
+          <li>Open your UPI app and paste the ID</li>
+          <li>Enter the exact amount shown</li>
+          <li>Complete the payment</li>
+        </ol>
+        <p>After payment, please click the verification button below.</p>
+      </div>
+      
+      <button class="btn pay-btn" style="width: 100%; margin-top: 15px;" onclick="verifyPayment()">I've Completed Payment</button>
+    </div>
+  </div>
+
+  <script>
+    // Load address from localStorage
+    function loadAddress() {
+      return JSON.parse(localStorage.getItem('deliveryAddress'));
+    }
+
+    // Display address details
+    function displayAddress() {
+      const address = loadAddress();
+      const addressElement = document.getElementById('address-details');
+      
+      if (address) {
+        addressElement.innerHTML = `
+          <p><strong>${address.fullName}</strong></p>
+          <p>${address.address}</p>
+          <p>${address.city}, ${address.state} - ${address.pincode}</p>
+          <p>Phone: ${address.phone}</p>
+          <p>Address Type: ${address.type.charAt(0).toUpperCase() + address.type.slice(1)}</p>
+        `;
+      } else {
+        // If no address found, redirect to address page
+        window.location.href = 'address.html';
+      }
+    }
+
+    // Get order total (helper function for QR code)
+    function getOrderTotal() {
+      return localStorage.getItem('cartTotal') || '0';
+    }
+
+    // Display order total
+    function displayOrderTotal() {
+      const total = localStorage.getItem('cartTotal') || '0.00';
+      document.getElementById('subtotal').textContent = `₹${total}`;
+      document.getElementById('order-total').textContent = `₹${total}`;
+    }
+
+    // Select payment method
+    let selectedPayment = '';
+    function selectPayment(method) {
+      selectedPayment = method;
+      
+      // Remove selected class from all methods
+      document.querySelectorAll('.payment-method').forEach(el => {
+        el.style.backgroundColor = '#f8f9fa';
+        el.style.border = 'none';
+      });
+      
+      // Add selected style to chosen method
+      event.currentTarget.style.backgroundColor = '#e2f3e8';
+      event.currentTarget.style.border = '1px solid #28a745';
+    }
+
+    // Show UPI modal
+    function showUPIModal() {
+      document.getElementById('upiModal').style.display = 'block';
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('upiModal').style.display = 'none';
+    }
+
+    // Copy UPI ID to clipboard
+    function copyUPI() {
+      const upiId = document.getElementById('upiId').textContent;
+      navigator.clipboard.writeText(upiId).then(() => {
+        const notification = document.getElementById('copyNotification');
+        notification.classList.add('show-notification');
+        setTimeout(() => {
+          notification.classList.remove('show-notification');
+        }, 2000);
+      });
+    }
+
+    // Verify payment (this would normally connect to your backend)
+    function verifyPayment() {
+      // In a real implementation, you would:
+      // 1. Send a request to your backend to verify payment
+      // 2. Show success/error message based on response
+      // 3. Redirect to order confirmation page
+      
+      // For demo purposes, we'll simulate verification
+      alert('Thank you for your payment! Your order is being processed.');
+      closeModal();
+      window.location.href = 'order-confirmation.html';
+    }
+
+    // Process payment
+    function processPayment() {
+      if (!selectedPayment) {
+        alert('Please select a payment method');
+        return;
+      }
+      
+      if (selectedPayment === 'upi') {
+        showUPIModal();
+      } else {
+        // For other payment methods, redirect to their respective pages
+        window.location.href = `payment-${selectedPayment}.html`;
+      }
+    }
+
+    // Initialize the page
+    window.onload = function() {
+      displayAddress();
+      displayOrderTotal();
+      
+      // Check if cart is empty
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        alert('Your cart is empty. Redirecting to home page.');
+        window.location.href = 'home.html';
+      }
+      
+      // Close modal if clicked outside
+      window.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('upiModal')) {
+          closeModal();
+        }
+      });
+    };
+  </script>
+</body>
+</html>
