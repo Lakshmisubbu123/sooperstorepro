@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart - Sooper Store</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+      padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+      font-size: 32px;
+      color: #333;
+      text-align: center;
+      position: relative;
+    }
+    
+    h1:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, #28a745, #98cce0);
+      border-radius: 3px;
+    }
+    
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #8e9eab, #eef2f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #28a745;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Checkout Progress Styles */
+    .checkout-progress {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0;
+      position: relative;
+      padding: 0 10px;
+    }
+    
+    .progress-bar {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      height: 4px;
+      background-color: #ddd;
+      width: 100%;
+      z-index: 1;
+      border-radius: 4px;
+    }
+    
+    .progress {
+      height: 100%;
+      background: linear-gradient(to right, #28a745, #98cce0);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    
+    .step-number {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #ddd;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .step.active .step-number {
+      background-color: #28a745;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .step.completed .step-number {
+      background-color: #28a745;
+      color: white;
+    }
+    
+    .step-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: #666;
+      transition: all 0.3s ease;
+    }
+    
+    .step.active .step-name {
+      color: #28a745;
+    }
+    
+    .step.completed .step-name {
+      color: #28a745;
+    }
+    
+    /* Rest of your existing styles with enhancements */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.3s ease;
+    }
+    
+    th {
+      background-color: #98cce0;
+      color: #333;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    tr {
+      transition: all 0.3s ease;
+    }
+    
+    tr:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.01);
+    }
+    
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #eee;
+      transition: transform 0.3s ease;
+    }
+    
+    tr:hover img {
+      transform: scale(1.1);
+      border-color: #98cce0;
+    }
+    
+    .qty-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .qty-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 18px;
+      border: none;
+      background: #f0f0f0;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .qty-btn:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .qty-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .remove-btn {
+      background: linear-gradient(to right, #ff5252, #ff7676);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .remove-btn:hover {
+      background: linear-gradient(to right, #ff0000, #ff5252);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .remove-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .total-row {
+      font-weight: bold;
+      font-size: 22px;
+      text-align: right;
+      padding: 20px 0;
+      border-top: 2px solid #98cce0;
+      color: #333;
+      background: linear-gradient(to right, rgba(152, 204, 224, 0.1), transparent);
+      transform: translateX(-20px);
+      opacity: 0;
+      animation: slideInRight 0.5s forwards;
+      animation-delay: 0.8s;
+    }
+    
+    @keyframes slideInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards;
+      animation-delay: 1s;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .back-btn {
+      background-color: #6c757d;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .back-btn:hover {
+      background-color: #5a6268;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    .back-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .checkout-btn {
+      background: linear-gradient(to right, #28a745, #20c997);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .checkout-btn:hover {
+      background: linear-gradient(to right, #218838, #1aa179);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    .checkout-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: scaleIn 0.5s forwards;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes scaleIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .empty-cart p {
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+    
+    .shop-btn {
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .shop-btn:hover {
+      background: linear-gradient(to right, #0069d9, #00b4ff);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    .shop-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* Cart item animations */
+    .cart-item {
+      animation: fadeIn 0.5s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 26px;
+      }
+      
+      .checkout-progress {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      .progress-bar {
+        width: 100%;
+        max-width: 200px;
+      }
+      
+      .step {
+        flex-direction: row;
+        gap: 10px;
+      }
+      
+      .step-number {
+        margin-bottom: 0;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader"></div>
+  </div>
+  
+  <div class="container">
+    <h1>🛒 Your Shopping Cart</h1>
+    
+    <!-- Checkout Progress Header -->
+    <div class="checkout-progress">
+      <div class="progress-bar"><div class="progress"></div></div>
+      <div class="step active">
+        <div class="step-number">1</div>
+        <div class="step-name">Cart</div>
+      </div>
+      <div class="step inactive">
+        <div class="step-number">2</div>
+        <div class="step-name">Address</div>
+      </div>
+      <div class="step inactive">
+        <div class="step-number">3</div>
+        <div class="step-name">Payment</div>
+      </div>
+    </div>
+    
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <!-- Cart items will be inserted here -->
+      </tbody>
+    </table>
+    
+    <div id="empty-cart-message" class="empty-cart" style="display: none;">
+      <p>Your cart is empty</p>
+      <a href="index.html" class="shop-btn">Continue Shopping</a>
+    </div>
+    
+    <div class="total-row" id="grand-total">Grand Total: ₹0</div>
+    
+    <div class="buttons">
+      <a href="index.html" class="btn back-btn">← Continue Shopping</a>
+      <button id="checkout-btn" class="btn checkout-btn" onclick="proceedToAddress()">Proceed to Address →</button>
+    </div>
+  </div>
+  
+  <script>
+    // Load cart from localStorage
+    function loadCart() {
+      return JSON.parse(localStorage.getItem('cart')) || [];
+    }
+    
+    // Save cart to localStorage
+    function saveCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    
+    // Render cart items
+    function renderCart() {
+      const cart = loadCart();
+      const cartBody = document.getElementById('cart-body');
+      const emptyMessage = document.getElementById('empty-cart-message');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      let grandTotal = 0;
+      
+      // Clear existing items
+      cartBody.innerHTML = '';
+      
+      if (cart.length === 0) {
+        document.getElementById('cart-table').style.display = 'none';
+        emptyMessage.style.display = 'block';
+        checkoutBtn.disabled = true;
+        checkoutBtn.style.opacity = '0.6';
+        checkoutBtn.style.cursor = 'not-allowed';
+      } else {
+        document.getElementById('cart-table').style.display = 'table';
+        emptyMessage.style.display = 'none';
+        checkoutBtn.disabled = false;
+        checkoutBtn.style.opacity = '1';
+        checkoutBtn.style.cursor = 'pointer';
+        
+        // Add items with staggered animation
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          grandTotal += itemTotal;
+          
+          const row = document.createElement('tr');
+          row.classList.add('cart-item');
+          row.style.animationDelay = `${index * 0.1}s`;
+          
+          row.innerHTML = `
+            <td>${item.name}</td>
+            <td><img src="${item.image}" alt="${item.name}"></td>
+            <td>₹${item.price.toFixed(2)}</td>
+            <td>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+              </div>
+            </td>
+            <td>₹${itemTotal.toFixed(2)}</td>
+            <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+          `;
+          
+          cartBody.appendChild(row);
+        });
+      }
+      
+      document.getElementById('grand-total').textContent = `Grand Total: ₹${grandTotal.toFixed(2)}`;
+      localStorage.setItem('cartTotal', grandTotal.toFixed(2));
+      
+      // Update progress bar
+      updateProgressBar();
+    }
+    
+    // Update progress bar
+    function updateProgressBar() {
+      const cart = loadCart();
+      let progress = 0;
+      
+      if (cart.length > 0) {
+        progress = 33; // Step 1 of 3
+      }
+      
+      document.querySelector('.progress').style.width = `${progress}%`;
+    }
+    
+    // Update item quantity
+    function updateQuantity(index, change) {
+      const cart = loadCart();
+      cart[index].quantity += change;
+      
+      // Ensure quantity doesn't go below 1
+      if (cart[index].quantity < 1) {
+        cart[index].quantity = 1;
+      }
+      
+      saveCart(cart);
+      renderCart();
+    }
+    
+    // Remove item from cart with animation
+    function removeItem(index) {
+      const cart = loadCart();
+      const row = document.querySelectorAll('#cart-body tr')[index];
+      
+      // Add fade-out animation
+      row.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      row.style.opacity = '0';
+      row.style.transform = 'translateX(20px)';
+      
+      setTimeout(() => {
+        cart.splice(index, 1);
+        saveCart(cart);
+        renderCart();
+      }, 300);
+    }
+    
+    // Proceed to address page
+    function proceedToAddress() {
+      window.location.href = 'address.html';
+    }
+    
+    // Initialize the page
+    window.onload = function() {
+      // Simulate loading delay
+      setTimeout(() => {
+        // Hide loading screen
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+        
+        // Render cart
+        renderCart();
+        
+        // Update progress bar
+        updateProgressBar();
+      }, 1000);
+    };
+  </script>
+</body>
+</html>

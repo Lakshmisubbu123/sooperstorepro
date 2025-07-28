@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOme Decor</title>
+<style>
+body {
+  background: linear-gradient(to right, #8e9eab, #eef2f3);
+  margin: 0;
+  padding: 0;
+  animation: bodyFade 1s ease-in-out;
+}
+@keyframes bodyFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+h1:hover {
+  color: #0c5d78;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  text-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: all 0.4s ease;
+}
+
+nav {
+  background-image: url('Products images/product nav.png');
+  background-size: cover;
+  background-position: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slideDown 0.8s ease-in-out;
+}
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+nav a {
+  float: left;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  opacity: 0;
+  animation: fadeInLinks 1s ease forwards;
+}
+nav a:nth-child(1) { animation-delay: 0.2s; }
+nav a:nth-child(2) { animation-delay: 0.4s; }
+nav a:nth-child(3) { animation-delay: 0.6s; }
+nav a:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeInLinks {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-20px); }
+}
+
+nav a:hover {
+  background-color: #ddd;
+  color: black;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  text-align: left;
+  animation: shimmer 2.5s infinite linear;
+}
+@keyframes shimmer {
+  0% { text-shadow: 0 0 10px #7cc3df; }
+  50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff; }
+  100% { text-shadow: 0 0 10px #7cc3df; }
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background-color: #7cc3df;
+  transition: width 0.3s ease;
+}
+.logo:hover {
+  transform: translateX(5px);
+}
+.logo:hover::after {
+  width: 100%;
+}
+
+/* Products Section */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  padding: 100px;
+  max-width: 1600px;
+  margin: auto;
+  text-decoration: none;
+  animation: fadeInGrid 1.2s ease-in;
+}
+@keyframes fadeInGrid {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.product-card {
+  height: 280px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: cardPop 0.6s ease forwards;
+}
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes cardPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.product-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+.product-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgb(199, 216, 219);
+  color: black;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .products-container {
+    grid-template-columns: 1fr;
+  }
+
+  .search-input {
+    width: 150px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    margin: 5px;
+  }
+}
+</style>
+
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+<!-- Products Grid -->
+
+  <section class="products-container">
+    <a href="e1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e1.webp');">
+    <div class="product-name">Fans & Air Coolers</div>
+  </div>
+</a>
+<a href="e2.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e2.webp');">
+    <div class="product-name">Water Purifiers</div>
+  </div>
+</a>
+<a href="e3.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e3.webp');">
+    <div class="product-name">Irons & Steamers</div>
+  </div>
+</a>
+<a href="e4.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e4.webp');">
+    <div class="product-name">Geysers & Heaters</div>
+  </div>
+</a>
+<a href="e5.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e5.webp');">
+    <div class="product-name">Vacuum Cleaners</div>
+  </div>
+</a>
+<a href="e6.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e6.webp');">
+    <div class="product-name">Air Purifiers</div>
+  </div>
+</a>
+<a href="e7.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e7.webp');">
+    <div class="product-name">Invertors & Stabilizers</div>
+  </div>
+</a>
+<a href="e8.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e8.webp');">
+    <div class="product-name">Sewing Machines</div>
+  </div>
+</a>
+<a href="e9.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e9.webp');">
+    <div class="product-name">Breakfast Appliances</div>
+  </div>
+</a>
+<a href="e10.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e10.webp');">
+    <div class="product-name">Cooking Appliances</div>
+  </div>
+</a>
+<a href="e11.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e11.webp');">
+    <div class="product-name">Juicers & Mixer Grinders</div>
+  </div>
+</a>
+<a href="e12.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/e12.webp');">
+    <div class="product-name">Chimneys & Hobs</div>
+  </div>
+</a>
+</section>
+</body>
+</html>

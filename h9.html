@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dream Catchers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+      padding: 20px;
+    }
+    .product-container {
+      text-align: center;
+    }
+    img {
+      width: 300px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .quantity-control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .quantity-control button {
+      font-size: 18px;
+      padding: 8px 14px;
+      margin: 0 10px;
+    }
+    .price-info {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .add-btn, .view-cart {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      margin: 10px;
+    }
+    .add-btn {
+      background-color: #28a745;
+    }
+    .view-cart {
+      background-color: #007bff;
+      text-decoration: none;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-container">
+    <h2>Dream Catchers</h2>
+    <img src="Products images/h9.jpg" alt="Dream Catchers">
+    <div class="price-info">Price: ₹299</div>
+    <div class="quantity-control">
+      <button onclick="changeQty(-1)">−</button>
+      <span id="qty">1</span>
+      <button onclick="changeQty(1)">+</button>
+    </div>
+    <div class="price-info">Total: ₹<span id="total">299</span></div>
+    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+    <a href="cart.html" class="view-cart">View Cart</a>
+  </div>
+
+  <script>
+    let qty = 1;
+    const price = 299;
+    function changeQty(n) {
+      qty += n;
+      if (qty < 1) qty = 1;
+      document.getElementById('qty').innerText = qty;
+      document.getElementById('total').innerText = qty * price;
+    }
+    function addToCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const name = "Dream Catchers";
+      const image = "Products images/h9.jpg";
+      const index = cart.findIndex(item => item.name === name);
+      if (index !== -1) cart[index].quantity += qty;
+      else cart.push({ name, image, quantity: qty, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${qty} Dream Catcher(s) added to cart.`);
+      qty = 1;
+      document.getElementById('qty').innerText = qty;
+      document.getElementById('total').innerText = price;
+    }
+  </script>
+</body>
+</html>

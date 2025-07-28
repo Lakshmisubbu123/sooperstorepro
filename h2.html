@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Door Curtains</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: linear-gradient(to right, #8e9eab, #eef2f3);
+    }
+    .product-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      max-width: 400px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .price-tag {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+    .quantity-control button {
+      padding: 8px 14px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .quantity-display {
+      margin: 0 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .add-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .add-btn:hover {
+      background-color: #218838;
+    }
+    .view-cart {
+      margin-top: 30px;
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+    }
+    .view-cart:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-container">
+    <h2>Door Curtains</h2>
+    <img src="Products images/h2.webp" alt="Door Curtains">
+    <div class="price-tag">Price: ₹799</div>
+
+    <div class="quantity-control">
+      <button onclick="changeQuantity(-1)">−</button>
+      <span class="quantity-display" id="qty">1</span>
+      <button onclick="changeQuantity(1)">+</button>
+    </div>
+
+    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+
+    <a href="cart.html" class="view-cart">View Cart</a>
+  </div>
+
+  <script>
+    let quantity = 1;
+    const price = 799;
+
+    function changeQuantity(change) {
+      quantity += change;
+      if (quantity < 1) quantity = 1;
+      document.getElementById('qty').textContent = quantity;
+    }
+
+    function addToCart() {
+      const name = "Door Curtains";
+      const image = "Products images/h2.webp";
+      const total = price * quantity;
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const index = cart.findIndex(item => item.name === name);
+
+      if (index !== -1) {
+        cart[index].quantity += quantity;
+        cart[index].total = cart[index].quantity * cart[index].price;
+      } else {
+        cart.push({ name, image, price, quantity, total });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${quantity} item(s) added to cart. Total: ₹${total}`);
+      quantity = 1;
+      document.getElementById('qty').textContent = quantity;
+    }
+  </script>
+</body>
+</html>
