@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products - Sooper Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reused styles from your home page */
+        body {
+            background: linear-gradient(to right, #8e9eab, #eef2f3);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+        }
+        
+        header {
+            background-color: rgb(50, 50, 105);
+            background-image: url('superstore img.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            padding: 50px;
+            margin: 10px;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 6px black;
+            position: relative;
+        }
+        
+        nav {
+            background-image: url('Products images/product nav.png');
+            background-size: cover;
+            background-position: center;
+            margin: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: white;
+            font-size: 20px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(1.1);
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 32px;
+            margin: 30px 0 20px;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #8e9eab, #eef2f3);
+            border-radius: 2px;
+        }
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            height: 220px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .product-name {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(199, 216, 219, 0.9);
+            color: #333;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover .product-name {
+            background: rgba(50, 50, 105, 0.9);
+            color: white;
+        }
+        
+        .product-price {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff6b6b;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: rgb(37, 37, 70);
+            padding: 1rem;
+            margin-left: 10px;
+            margin-right: 10px;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 93.6%;
+        }
+
+        /* Search specific styles */
+        .search-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-button {
+            padding: 0 25px;
+            border: none;
+            background: #ff6b6b;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-button:hover {
+            background: #ff5252;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            font-size: 20px;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+        
+        .search-count {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        @media (max-width: 900px) {
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-card {
+                height: 180px;
+            }
+            
+            .product-name {
+                font-size: 14px;
+                padding: 8px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+                font-size: 24px;
+                flex-direction: column;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            nav a {
+                width: auto;
+            }
+            
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            
+            .search-input {
+                border-radius: 10px 10px 0 0;
+            }
+            
+            .search-button {
+                border-radius: 0 0 10px 10px;
+                padding: 12px;
+                justify-content: center;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sooper Store</h1>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="login.html"><i class="fas fa-user"></i> Login</a>
+        <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+        <a href="search.html" class="active"><i class="fas fa-search"></i> Search</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+    
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for products..." id="searchInput">
+            <button class="search-button" id="searchButton">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+        
+        <h2>Search Results</h2>
+        <div class="search-count" id="searchCount"></div>
+        <div class="products-container" id="resultsContainer">
+            <div class="no-results">Enter a search term to find products</div>
+        </div>
+    </div>
+    
+    <footer>
+        &copy; 2025 Sooper Store. All rights reserved.
+    </footer>
+
+    <script>
+        // Product data matching your home page
+        const products = [
+            // Fruits
+            { name: "Orange", price: "$2.99/kg", image: "Products images/f1.jpg", category: "fruits", link: "f1.html" },
+            { name: "Mango", price: "$3.49/kg", image: "Products images/f2.jpg", category: "fruits", link: "f2.html" },
+            { name: "Banana", price: "$1.29/kg", image: "Products images/f3.jpg", category: "fruits", link: "f3.html" },
+            { name: "Apple", price: "$2.19/kg", image: "Products images/f4.jpg", category: "fruits", link: "f4.html" },
+            { name: "Watermelon", price: "$0.99/kg", image: "Products images/f5.jpg", category: "fruits", link: "f5.html" },
+            { name: "Dragon fruit", price: "$4.99/kg", image: "Products images/f6.jpg", category: "fruits", link: "f6.html" },
+            { name: "Pineapple", price: "$3.29/kg", image: "Products images/f7.jpg", category: "fruits", link: "f7.html" },
+            { name: "Strawberry", price: "$5.99/kg", image: "Products images/f8.jpg", category: "fruits", link: "f8.html" },
+            { name: "Guavas", price: "$2.49/kg", image: "Products images/f9.jpg", category: "fruits", link: "f9.html" },
+            { name: "Kiwis", price: "$4.29/kg", image: "Products images/f10.jpg", category: "fruits", link: "f10.html" },
+            { name: "Cherries", price: "$6.99/kg", image: "Products images/f11.jpg", category: "fruits", link: "f11.html" },
+            { name: "Pomegranates", price: "$3.99/kg", image: "Products images/f12.jpg", category: "fruits", link: "f12.html" },
+            
+            // Electrical Products
+            { name: "Fans & Air Coolers", price: "$89.99", image: "Products images/e1.webp", category: "electrical", link: "e1.html" },
+            { name: "Water Purifiers", price: "$149.99", image: "Products images/e2.webp", category: "electrical", link: "e2.html" },
+            { name: "Irons & Steamers", price: "$39.99", image: "Products images/e3.webp", category: "electrical", link: "e3.html" },
+            { name: "Geysers & Heaters", price: "$79.99", image: "Products images/e4.webp", category: "electrical", link: "e4.html" },
+            { name: "Vacuum Cleaners", price: "$129.99", image: "Products images/e5.webp", category: "electrical", link: "e5.html" },
+            { name: "Air Purifiers", price: "$199.99", image: "Products images/e6.webp", category: "electrical", link: "e6.html" },
+            { name: "Invertors & Stabilizers", price: "$159.99", image: "Products images/e7.webp", category: "electrical", link: "e7.html" },
+            { name: "Sewing Machines", price: "$119.99", image: "Products images/e8.webp", category: "electrical", link: "e8.html" },
+            { name: "Breakfast Appliances", price: "$49.99", image: "Products images/e9.webp", category: "electrical", link: "e9.html" },
+            { name: "Cooking Appliances", price: "$89.99", image: "Products images/e10.webp", category: "electrical", link: "e10.html" },
+            { name: "Juicers & Mixer Grinders", price: "$59.99", image: "Products images/e11.webp", category: "electrical", link: "e11.html" },
+            { name: "Chimneys & Hobs", price: "$139.99", image: "Products images/e12.webp", category: "electrical", link: "e12.html" },
+            
+            // Add all other products from your home page here...
+            // Cooking Essentials
+            { name: "Atta Flours", price: "$1.99/kg", image: "Products images/c1.webp", category: "cooking", link: "c1.html" },
+            { name: "Besan", price: "$2.49/kg", image: "Products images/c2.webp", category: "cooking", link: "c2.html" },
+            // Continue with all other categories...
+            
+            // Jewellery
+            { name: "Gold", price: "$599.99", image: "Products images/j1.jpg", category: "jewellery", link: "j1.html" },
+            { name: "Set's", price: "$299.99", image: "Products images/j2.jpg", category: "jewellery", link: "j2.html" },
+            
+            // Bakery
+            { name: "Chocolate Cake", price: "$12.99", image: "Products images/b1.jpg", category: "bakery", link: "b1.html" },
+            { name: "Normal Cake", price: "$9.99", image: "Products images/b2.jpg", category: "bakery", link: "b2.html" },
+            
+            // Home Decor
+            { name: "Bedsheets & Sets", price: "$29.99", image: "Products images/h1.webp", category: "home decor", link: "h1.html" },
+            { name: "Door Curtains", price: "$19.99", image: "Products images/h2.webp", category: "home decor", link: "h2.html" },
+            
+            // Bags
+            { name: "Bag Fashion", price: "$39.99", image: "Products images/bf.jpg", category: "bags", link: "bag1.html" },
+            { name: "College Bag's", price: "$24.99", image: "Products images/bclg.jpg", category: "bags", link: "bag2.html" },
+            
+            // Electronics
+            { name: "Smart phones", price: "$299.99", image: "Products images/g1.webp", category: "electronics", link: "g1.html" },
+            { name: "Laptops", price: "$599.99", image: "Products images/g3.webp", category: "electronics", link: "g3.html" }
+        ];
+
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const searchCount = document.getElementById('searchCount');
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    resultsContainer.innerHTML = '<div class="no-results">Enter a search term to find products</div>';
+                    searchCount.textContent = '';
+                    return;
+                }
+                
+                const filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) || 
+                    product.category.toLowerCase().includes(searchTerm)
+                );
+                
+                displayResults(filteredProducts, searchTerm);
+            }
+            
+            function displayResults(filteredProducts, searchTerm) {
+                if (filteredProducts.length === 0) {
+                    resultsContainer.innerHTML = `
+                        <div class="no-results">
+                            No products found matching "${searchTerm}"
+                        </div>
+                    `;
+                    searchCount.textContent = '0 results found';
+                    return;
+                }
+                
+                searchCount.textContent = `${filteredProducts.length} results found for "${searchTerm}"`;
+                
+                let html = '';
+                filteredProducts.forEach(product => {
+                    html += `
+                        <a href="${product.link}" class="product-link">
+                            <div class="product-card" style="background-image: url('${product.image}')">
+                                <div class="product-price">${product.price}</div>
+                                <div class="product-name">${product.name}</div>
+                            </div>
+                        </a>
+                    `;
+                });
+                
+                resultsContainer.innerHTML = html;
+            }
+            
+            // Event listeners
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

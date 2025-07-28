@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You - Sooper Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .thankyou-container {
+      background: #fff;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #28a745;
+      font-size: 36px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin-top: 20px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="thankyou-container">
+    <h1>✅ Thank You for Your Payment!</h1>
+    <p>Your order has been received and is being processed.</p>
+    <p>We hope to serve you again soon!</p>
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <script>
+    // Clear cart and amount after successful payment
+    localStorage.removeItem('cart');
+    localStorage.removeItem('amount');
+  </script>
+</body>
+</html>

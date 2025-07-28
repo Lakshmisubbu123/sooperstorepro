@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOme Decor</title>
+    <style>
+    body{
+  background: linear-gradient(to right, #8e9eab, #eef2f3); 
+}
+
+h1:hover {
+  background-color: none; /* Darker background on hover */
+  color: none;         /* Change text color */
+  letter-spacing: 1px;    /* Slight letter spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+nav{
+    background-image: url('Products images/product nav.png');
+    background-size: cover;
+    background-position: center;
+    /*overflow: hidden; */
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+nav a{
+    float: left;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+nav a:hover {
+    background-color: #ddd;
+    text-overflow: clip;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.3s ease;    /* Smooth transition */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transform: scale(1.1); 
+}
+.logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      position: relative;
+      transition: all 0.3s ease;
+      text-align: left;
+      
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background-color: #7cc3df;
+      transition: width 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: translateX(5px);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+
+        /* Products Section */
+    .products-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
+  gap: 30px; /* Reduced gap between cards */
+  padding: 40px; /* Reduced padding */
+  max-width: 1800px; /* Optional: constrain maximum width */
+  margin: 0 auto; /* Center the container */
+}
+
+.product-card {
+  height: 280px; /* Reduced card height */
+  width: 100%; /* Takes full width of grid cell */
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+    }
+
+    .product-name {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgb(199, 216, 219);
+      color: black;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+      .products-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-container {
+        grid-template-columns: 1fr; /* 1 per row on mobile */
+      }
+
+      .search-input {
+        width: 150px;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+        margin: 5px;
+      }
+    }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+<!-- Products Grid -->
+
+  <section class="products-container">
+    <a href="c1.html" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/c1.webp');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+<a href="" class="product-link">
+  <div class="product-card" style="background-image: url('Products images/');">
+    <div class="product-name"></div>
+  </div>
+</a>
+</section>
+</body>
+</html>

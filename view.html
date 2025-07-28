@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Messages - Super Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #a1cad4 0%, #e2f1f5 100%);
+      min-height: 100vh;
+      color: #2d3e50;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-image: url('Products images/product nav.png');
+      background-size: cover;
+      background-position: center;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: white;
+      position: relative;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, #7cc3df, #febd69);
+      transition: width 0.4s ease;
+    }
+
+    .logo:hover {
+      transform: translateX(5px);
+    }
+
+    .logo:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #7cc3df, #febd69);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #febd69;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Main Container */
+    .main-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: calc(100vh - 70px);
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s 0.3s forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #7cc3df, #febd69);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2d3e50;
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #7cc3df, #febd69);
+      border-radius: 3px;
+    }
+
+    /* Message Styles */
+    #messageList {
+      display: grid;
+      gap: 20px;
+    }
+
+    .message {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border-left: 4px solid #7cc3df;
+      animation: fadeIn 0.6s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .message:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .message-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2d3e50;
+    }
+
+    .message-date {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .message-content p {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .message strong {
+      color: #4466aa;
+      font-weight: 600;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+    }
+
+    .empty-state i {
+      font-size: 50px;
+      color: #7cc3df;
+      margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+      margin-bottom: 10px;
+      color: #2d3e50;
+    }
+
+    /* Action Buttons */
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7cc3df 0%, #4466aa 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(68, 102, 170, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(68, 102, 170, 0.4);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(201, 42, 42, 0.3);
+    }
+
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(201, 42, 42, 0.4);
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 15px;
+      }
+      
+      .logo {
+        margin-bottom: 15px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: space-around;
+      }
+      
+      .nav-links a {
+        margin: 0 5px;
+        font-size: 14px;
+      }
+      
+      .container {
+        padding: 30px 20px;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px 15px;
+      }
+      
+      .message-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .message-date {
+        margin-top: 5px;
+      }
+      
+      .actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">Super Store</div>
+      <div class="nav-links">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="products.html"><i class="fas fa-shopping-bag"></i> Products</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="container animate__animated animate__fadeInUp">
+      <h2 class="animate__animated animate__fadeInDown">Customer Messages</h2>
+      <div id="messageList"></div>
+      
+      <div class="actions">
+        <a href="contact.html" class="btn btn-primary">
+          <i class="fas fa-arrow-left"></i> Back to Contact
+        </a>
+        <button id="clearMessages" class="btn btn-danger">
+          <i class="fas fa-trash"></i> Clear All Messages
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const messages = JSON.parse(localStorage.getItem("messages")) || [];
+      const messageList = document.getElementById("messageList");
+      const clearBtn = document.getElementById("clearMessages");
+
+      // Function to render messages with staggered animation
+      function renderMessages() {
+        if (messages.length === 0) {
+          messageList.innerHTML = `
+            <div class="empty-state animate__animated animate__fadeIn">
+              <i class="fas fa-envelope-open-text"></i>
+              <h3>No messages yet</h3>
+              <p>All customer messages will appear here</p>
+            </div>
+          `;
+        } else {
+          messageList.innerHTML = '';
+          messages.forEach((msg, index) => {
+            const div = document.createElement("div");
+            div.classList.add("message");
+            div.style.animationDelay = `${index * 0.1}s`;
+            
+            // Format date if timestamp exists
+            const date = msg.timestamp ? new Date(msg.timestamp) : new Date();
+            const formattedDate = date.toLocaleString();
+            
+            div.innerHTML = `
+              <div class="message-header">
+                <div class="message-title">Message from ${msg.name}</div>
+                <div class="message-date">${formattedDate}</div>
+              </div>
+              <div class="message-content">
+                <p><strong><i class="fas fa-envelope"></i> Email:</strong> ${msg.email}</p>
+                <p><strong><i class="fas fa-comment"></i> Message:</strong> ${msg.message}</p>
+              </div>
+            `;
+            messageList.appendChild(div);
+          });
+        }
+      }
+
+      // Initial render
+      renderMessages();
+
+      // Clear messages functionality
+      clearBtn.addEventListener('click', function() {
+        if (messages.length === 0) {
+          showAlert('No messages to clear', 'info');
+          return;
+        }
+
+        if (confirm('Are you sure you want to delete all messages?')) {
+          localStorage.removeItem("messages");
+          showAlert('All messages have been cleared', 'success');
+          renderMessages();
+        }
+      });
+
+      // Show alert notification
+      function showAlert(message, type) {
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.textContent = message;
+        alert.style.position = 'fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.padding = '15px 25px';
+        alert.style.background = type === 'success' ? '#4CAF50' : '#2196F3';
+        alert.style.color = 'white';
+        alert.style.borderRadius = '5px';
+        alert.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        alert.style.zIndex = '1000';
+        alert.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2.7s forwards';
+        
+        document.body.appendChild(alert);
+        
+        setTimeout(() => {
+          alert.remove();
+        }, 3000);
+      }
+    });
+  </script>
+
+</body>
+</html>

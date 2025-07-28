@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kurta Sets</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: linear-gradient(to right, #8e9eab, #eef2f3); }
+    .product-container { display: flex; flex-direction: column; align-items: center; }
+    img { width: 300px; border-radius: 12px; margin-bottom: 20px; }
+    .price { font-size: 20px; font-weight: bold; margin-bottom: 10px; }
+    .quantity-control { display: flex; align-items: center; margin-bottom: 10px; }
+    .quantity-control button { padding: 6px 14px; font-size: 18px; }
+    .quantity-display { margin: 0 10px; font-size: 20px; font-weight: bold; }
+    .add-btn, .view-cart {
+      padding: 10px 20px; font-size: 16px; border: none; border-radius: 8px;
+      cursor: pointer; margin-top: 10px; color: white;
+    }
+    .add-btn { background-color: #28a745; }
+    .add-btn:hover { background-color: #218838; }
+    .view-cart { background-color: #007bff; text-decoration: none; }
+    .view-cart:hover { background-color: #0056b3; }
+  </style>
+</head>
+<body>
+  <div class="product-container">
+    <h2>Kurta Sets</h2>
+    <img src="Products images/w6.webp" alt="Kurta Sets">
+    <div class="price">Price: Rs.899</div>
+    <div class="quantity-control">
+      <button onclick="changeQuantity(-1)">−</button>
+      <span class="quantity-display" id="qty">1</span>
+      <button onclick="changeQuantity(1)">+</button>
+    </div>
+    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+    <a href="cart.html" class="view-cart">View Cart</a>
+  </div>
+
+  <script>
+    let quantity = 1;
+    const price = 899;
+    function changeQuantity(change) {
+      quantity += change;
+      if (quantity < 1) quantity = 1;
+      document.getElementById("qty").textContent = quantity;
+    }
+
+    function addToCart() {
+      const name = "Kurta Sets";
+      const image = "Products images/w6.webp";
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const index = cart.findIndex(item => item.name === name);
+      if (index !== -1) cart[index].quantity += quantity;
+      else cart.push({ name, image, quantity, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${quantity} item(s) added to cart.`);
+      quantity = 1;
+      document.getElementById("qty").textContent = quantity;
+    }
+  </script>
+</body>
+</html>

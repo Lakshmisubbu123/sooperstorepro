@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Core Values - Sooper Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2ecc71;
+      --secondary: #3498db;
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --accent: #e74c3c;
+      --text: #333;
+      --shadow: 0 4px 6px rgba(0,0,0,0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    /* Navigation */
+    nav {
+      background: var(--dark);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+    
+    .logo {
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1.2rem;
+      margin: 0 5px;
+      border-radius: 30px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+    
+    .nav-links a i {
+      margin-right: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    
+    .nav-links a.active {
+      background: var(--accent);
+      box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+    }
+    
+    /* Hero Section */
+    .values-hero {
+      background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(52, 152, 219, 0.9)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .values-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+      z-index: 0;
+    }
+    
+    .values-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease;
+    }
+    
+    .values-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease;
+    }
+    
+    /* Values Content */
+    .values-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    
+    .values-intro {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .values-intro h2 {
+      font-size: 2.2rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    
+    .values-intro p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .value-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .value-icon {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-size: 3rem;
+    }
+    
+    .value-content {
+      padding: 2rem;
+    }
+    
+    .value-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .value-content p {
+      color: #666;
+    }
+    
+    /* Testimonial Section */
+    .testimonial-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 4rem 2rem;
+      margin: 4rem 0;
+      text-align: center;
+    }
+    
+    .testimonial-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-section h2 {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      color: var(--dark);
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      position: absolute;
+      top: -20px;
+      left: 10px;
+      color: rgba(46, 204, 113, 0.1);
+      line-height: 1;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    .testimonial-role {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark), #1a252f);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 10px;
+      margin: 4rem auto;
+      max-width: 1000px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-section p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .footer-logo i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+    
+    .footer-about p {
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-links a {
+      color: white;
+      background: rgba(255,255,255,0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-links h3, .footer-contact h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-links h3::after, .footer-contact h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      opacity: 1;
+      padding-left: 5px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-item i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+    
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .values-hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+      }
+      
+      .logo {
+        margin-bottom: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-links a {
+        margin: 0.3rem;
+        padding: 0.5rem 1rem;
+      }
+      
+      .values-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .values-hero p {
+        font-size: 1rem;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .values-hero {
+        padding: 6rem 1rem;
+      }
+      
+      .values-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .value-icon {
+        height: 100px;
+        font-size: 2.5rem;
+      }
+      
+      .value-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-store"></i> Sooper Store
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="mission.html"><i class="fas fa-bullseye"></i> Mission</a></li>
+        <li><a href="vision.html"><i class="fas fa-eye"></i> Vision</a></li>
+        <li><a href="values.html" class="active"><i class="fas fa-heart"></i> Values</a></li>
+        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="values-hero">
+    <h1>Our Core Values</h1>
+    <p>The fundamental beliefs that guide our actions and define our culture</p>
+  </section>
+
+  <div class="values-container">
+    <section class="values-intro">
+      <h2>What We Stand For</h2>
+      <p>At Sooper Store, our values are more than just words—they're the foundation of our company culture and the compass that guides our decisions. These principles shape our relationships with customers, employees, and the communities we serve.</p>
+    </section>
+
+    <section class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="value-content">
+          <h3>Customer First</h3>
+          <p>We put our customers at the heart of everything we do. Their needs guide our decisions, and their satisfaction measures our success. We listen, adapt, and continuously improve to exceed expectations.</p>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <div class="value-content">
+          <h3>Quality Excellence</h3>
+          <p>From sourcing to shelf, we maintain uncompromising standards. Every product undergoes rigorous evaluation to ensure it meets our high-quality benchmarks before reaching our customers.</p>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <div class="value-content">
+          <h3>Community Commitment</h3>
+          <p>We're more than a store—we're community partners. Through local initiatives, charitable programs, and economic support, we invest in the neighborhoods that support us.</p>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-scale-balanced"></i>
+        </div>
+        <div class="value-content">
+          <h3>Ethical Integrity</h3>
+          <p>We conduct business with honesty, fairness, and transparency. Our relationships with suppliers, employees, and customers are built on trust and mutual respect.</p>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="value-content">
+          <h3>Sustainable Future</h3>
+          <p>Environmental stewardship is our responsibility. We implement eco-friendly practices, reduce waste, and promote sustainable products to minimize our ecological footprint.</p>
+        </div>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="value-content">
+          <h3>Innovative Spirit</h3>
+          <p>We embrace change and challenge the status quo. By fostering creativity and exploring new ideas, we continuously evolve to better serve our customers and communities.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="testimonial-section">
+    <div class="testimonial-container">
+      <h2>What People Say About Us</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">Sooper Store's commitment to quality and community is unmatched. Their values aren't just words—they live them every day.</p>
+          <p class="testimonial-author">Sarah Johnson</p>
+          <p class="testimonial-role">Local Business Owner</p>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">I've been shopping here for years because I trust their ethical sourcing and commitment to sustainability.</p>
+          <p class="testimonial-author">Michael Chen</p>
+          <p class="testimonial-role">Loyal Customer</p>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">Working with Sooper Store has been a pleasure. Their integrity and customer focus make them stand out in the retail industry.</p>
+          <p class="testimonial-author">David Rodriguez</p>
+          <p class="testimonial-role">Supplier Partner</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Experience Our Values in Action</h2>
+      <p>Visit us today and discover how our commitment to these principles creates a better shopping experience for everyone.</p>
+      <a href="index.html" class="cta-button">Visit Our Store</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <i class="fas fa-store"></i> Sooper Store
+        </div>
+        <p>Committed to quality, community, and sustainable practices since 2005. Our values guide us in serving you better every day.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="mission.html">Our Mission</a></li>
+          <li><a href="vision.html">Our Vision</a></li>
+          <li><a href="values.html">Our Values</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>123 Retail Street, Cityville, ST 12345</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>(555) 123-4567</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>info@sooperstore.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon-Sat: 8AM-9PM, Sun: 9AM-6PM</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2023 Sooper Store. All Rights Reserved. | <a href="#" style="color: white; text-decoration: underline;">Privacy Policy</a> | <a href="#" style="color: white; text-decoration: underline;">Terms of Service</a>
+    </div>
+  </footer>
+</body>
+</html>
